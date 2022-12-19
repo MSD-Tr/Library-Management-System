@@ -4,74 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Fatura">
-          <Key>
-            <PropertyRef Name="FaturaID" />
-          </Key>
-          <Property Name="FaturaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="MusteriID" Type="int" Nullable="false" />
-          <Property Name="OdemeTutari" Type="money" />
-        </EntityType>
-        <EntityType Name="Musteri Listesi">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="GirisTarihi" Type="datetime" Nullable="false" />
-          <Property Name="CikisTarihi" Type="datetime" Nullable="false" />
-          <Property Name="KonoklamaSuresi" Type="int" />
-          <Property Name="OdaNumarası" Type="int" Nullable="false" />
-          <Property Name="OdenecekUcret" Type="money" />
-          <Property Name="Musteriler_ID" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Musteriler">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Adi" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Soyadi" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Telefon" Type="nvarchar" MaxLength="11" Nullable="false" />
-          <Property Name="Adres" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="TC" Type="varchar" MaxLength="11" />
-          <Property Name="Personel_ID" Type="int" />
-        </EntityType>
-        <EntityType Name="OdaBilgisi">
-          <Key>
-            <PropertyRef Name="OdaNo" />
-          </Key>
-          <Property Name="OdaNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="KatBilgisi" Type="int" Nullable="false" />
-          <Property Name="GunlukFiyati" Type="money" Nullable="false" />
-          <Property Name="KisiSayisi" Type="bigint" Nullable="false" />
-        </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'Hotel BMB.dbo.OdaDurum' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="OdaDurum">
-          <Key>
-            <PropertyRef Name="DurumID" />
-          </Key>
-          <Property Name="DurumID" Type="int" Nullable="false" />
-          <Property Name="OdaNo" Type="int" />
-        </EntityType>
-        <EntityType Name="Personel Listesi">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TC" Type="nvarchar" MaxLength="11" Nullable="false" />
-          <Property Name="Adi" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Soyadi" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="DogumTarihi" Type="datetime" Nullable="false" />
-          <Property Name="Telefon" Type="nvarchar" MaxLength="11" Nullable="false" />
-          <Property Name="Adres" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="CocukSayisi" Type="int" Nullable="false" />
-          <Property Name="Maas" Type="money" Nullable="false" />
-          <Property Name="MesaiSaati" Type="float" Nullable="false" />
-          <Property Name="MesaiUcreti" Type="money" Nullable="false" />
-          <Property Name="IseGirisTarihi" Type="datetime" Nullable="false" />
-        </EntityType>
+      <Schema Namespace="devrimme_nurModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -82,98 +15,154 @@ warning 6002: The table/view 'Hotel BMB.dbo.OdaDurum' does not have a primary ke
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'Hotel BMB.dbo.Uyeler' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="Uyeler">
+        <EntityType Name="Author">
           <Key>
             <PropertyRef Name="ID" />
-            <PropertyRef Name="KullanıcıAdi" />
-            <PropertyRef Name="Sifre" />
-            <PropertyRef Name="Mail" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
-          <Property Name="KullanıcıAdi" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Sifre" Type="nvarchar" MaxLength="11" Nullable="false" />
-          <Property Name="Mail" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="varchar" MaxLength="50" />
+          <Property Name="SURNAME" Type="varchar" MaxLength="50" />
+          <Property Name="DETAILS" Type="varchar" MaxLength="1000" />
         </EntityType>
-        <Association Name="FK_Fatura_Musteriler">
-          <End Role="Musteriler" Type="Self.Musteriler" Multiplicity="1" />
-          <End Role="Fatura" Type="Self.Fatura" Multiplicity="*" />
+        <EntityType Name="Book">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Categories_Id" Type="tinyint" />
+          <Property Name="Author_Id" Type="int" />
+          <Property Name="PrıntıngYear" Type="char" MaxLength="4" />
+          <Property Name="Publısher" Type="varchar" MaxLength="50" />
+          <Property Name="PagesNumber" Type="varchar" MaxLength="4" />
+          <Property Name="Status" Type="bit" />
+        </EntityType>
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Empyloyees">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Employee" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Members">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="50" />
+          <Property Name="Mail" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+          <Property Name="Photography" Type="varchar" MaxLength="250" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Movement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Book_Id" Type="int" />
+          <Property Name="Member_ıd" Type="int" />
+          <Property Name="StartDate" Type="smalldatetime" />
+          <Property Name="FinishDate" Type="smalldatetime" />
+          <Property Name="Employee_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="Punishment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Members_Id" Type="int" />
+          <Property Name="StartDate" Type="smalldatetime" />
+          <Property Name="FinishDate" Type="smalldatetime" />
+          <Property Name="Money" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Movement_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="Tıll">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Moon" Type="varchar" MaxLength="50" />
+          <Property Name="Amount" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'devrimme_nur.devrimme_usernur.Till' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Till">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Moon" Type="varchar" MaxLength="50" />
+          <Property Name="Amount" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <Association Name="FK_Book_Author">
+          <End Role="Author" Type="Self.Author" Multiplicity="0..1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Musteriler">
+            <Principal Role="Author">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Fatura">
-              <PropertyRef Name="MusteriID" />
+            <Dependent Role="Book">
+              <PropertyRef Name="Author_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Musteri Listesi_Musteriler">
-          <End Role="Musteriler" Type="Self.Musteriler" Multiplicity="1" />
-          <End Role="Musteri Listesi" Type="Self.Musteri Listesi" Multiplicity="*" />
+        <Association Name="FK_Book_Categories">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Musteriler">
+            <Principal Role="Categories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="Categories_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Movement_Book">
+          <End Role="Book" Type="Self.Book" Multiplicity="1" />
+          <End Role="Movement" Type="Self.Movement" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Musteri Listesi">
-              <PropertyRef Name="Musteriler_ID" />
+            <Dependent Role="Movement">
+              <PropertyRef Name="Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Musteri Listesi_OdaBilgisi">
-          <End Role="OdaBilgisi" Type="Self.OdaBilgisi" Multiplicity="1" />
-          <End Role="Musteri Listesi" Type="Self.Musteri Listesi" Multiplicity="*" />
+        <Association Name="FK_Punishment_Members">
+          <End Role="Members" Type="Self.Members" Multiplicity="0..1" />
+          <End Role="Punishment" Type="Self.Punishment" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="OdaBilgisi">
-              <PropertyRef Name="OdaNo" />
+            <Principal Role="Members">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Musteri Listesi">
-              <PropertyRef Name="OdaNumarası" />
+            <Dependent Role="Punishment">
+              <PropertyRef Name="Members_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Musteriler_Personel Listesi">
-          <End Role="Personel Listesi" Type="Self.Personel Listesi" Multiplicity="0..1" />
-          <End Role="Musteriler" Type="Self.Musteriler" Multiplicity="*" />
+        <Association Name="FK_Punishment_Movement">
+          <End Role="Movement" Type="Self.Movement" Multiplicity="0..1" />
+          <End Role="Punishment" Type="Self.Punishment" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Personel Listesi">
-              <PropertyRef Name="ID" />
+            <Principal Role="Movement">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Musteriler">
-              <PropertyRef Name="Personel_ID" />
+            <Dependent Role="Punishment">
+              <PropertyRef Name="Movement_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_OdaDurum_OdaBilgisi">
-          <End Role="OdaBilgisi" Type="Self.OdaBilgisi" Multiplicity="0..1" />
-          <End Role="OdaDurum" Type="Self.OdaDurum" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="OdaBilgisi">
-              <PropertyRef Name="OdaNo" />
-            </Principal>
-            <Dependent Role="OdaDurum">
-              <PropertyRef Name="OdaNo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Uyeler_Personel Listesi">
-          <End Role="Personel Listesi" Type="Self.Personel Listesi" Multiplicity="1" />
-          <End Role="Uyeler" Type="Self.Uyeler" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Personel Listesi">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Uyeler">
-              <PropertyRef Name="ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Function Name="DeleteFromCalisanlar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="ID" Type="int" Mode="In" />
-        </Function>
-        <Function Name="DeleteFromMusteriler" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="ID" Type="int" Mode="In" />
-        </Function>
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -205,125 +194,49 @@ warning 6002: The table/view 'Hotel BMB.dbo.Uyeler' does not have a primary key 
           <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <EntityContainer Name="ModelStoreContainer">
-          <EntitySet Name="Fatura" EntityType="Self.Fatura" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Musteri Listesi" EntityType="Self.Musteri Listesi" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Musteriler" EntityType="Self.Musteriler" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="OdaBilgisi" EntityType="Self.OdaBilgisi" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Personel Listesi" EntityType="Self.Personel Listesi" Schema="dbo" store:Type="Tables" />
+        <EntityContainer Name="devrimme_nurModelStoreContainer">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="OdaDurum" EntityType="Self.OdaDurum" store:Type="Tables" store:Schema="dbo">
+          <EntitySet Name="Author" EntityType="Self.Author" Schema="devrimme_usernur" store:Type="Tables" />
+          <EntitySet Name="Book" EntityType="Self.Book" Schema="devrimme_usernur" store:Type="Tables" />
+          <EntitySet Name="Categories" EntityType="Self.Categories" Schema="devrimme_usernur" store:Type="Tables" />
+          <EntitySet Name="Empyloyees" EntityType="Self.Empyloyees" Schema="devrimme_usernur" store:Type="Tables" />
+          <EntitySet Name="Members" EntityType="Self.Members" Schema="devrimme_usernur" store:Type="Tables" />
+          <EntitySet Name="Movement" EntityType="Self.Movement" Schema="devrimme_usernur" store:Type="Tables" />
+          <EntitySet Name="Punishment" EntityType="Self.Punishment" Schema="devrimme_usernur" store:Type="Tables" />
+          <EntitySet Name="Tıll" EntityType="Self.Tıll" Schema="devrimme_usernur" store:Type="Tables" />
+          <EntitySet Name="Till" EntityType="Self.Till" store:Type="Tables" store:Schema="devrimme_usernur">
             <DefiningQuery>SELECT 
-    [OdaDurum].[DurumID] AS [DurumID], 
-    [OdaDurum].[OdaNo] AS [OdaNo]
-    FROM [dbo].[OdaDurum] AS [OdaDurum]</DefiningQuery>
+    [Till].[Id] AS [Id], 
+    [Till].[Moon] AS [Moon], 
+    [Till].[Amount] AS [Amount]
+    FROM [devrimme_usernur].[Till] AS [Till]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="Uyeler" EntityType="Self.Uyeler" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Uyeler].[ID] AS [ID], 
-    [Uyeler].[KullanıcıAdi] AS [KullanıcıAdi], 
-    [Uyeler].[Sifre] AS [Sifre], 
-    [Uyeler].[Mail] AS [Mail]
-    FROM [dbo].[Uyeler] AS [Uyeler]</DefiningQuery>
-          </EntitySet>
-          <AssociationSet Name="FK_Fatura_Musteriler" Association="Self.FK_Fatura_Musteriler">
-            <End Role="Musteriler" EntitySet="Musteriler" />
-            <End Role="Fatura" EntitySet="Fatura" />
+          <AssociationSet Name="FK_Book_Author" Association="Self.FK_Book_Author">
+            <End Role="Author" EntitySet="Author" />
+            <End Role="Book" EntitySet="Book" />
           </AssociationSet>
-          <AssociationSet Name="FK_Musteri Listesi_Musteriler" Association="Self.FK_Musteri Listesi_Musteriler">
-            <End Role="Musteriler" EntitySet="Musteriler" />
-            <End Role="Musteri Listesi" EntitySet="Musteri Listesi" />
+          <AssociationSet Name="FK_Book_Categories" Association="Self.FK_Book_Categories">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Book" EntitySet="Book" />
           </AssociationSet>
-          <AssociationSet Name="FK_Musteri Listesi_OdaBilgisi" Association="Self.FK_Musteri Listesi_OdaBilgisi">
-            <End Role="OdaBilgisi" EntitySet="OdaBilgisi" />
-            <End Role="Musteri Listesi" EntitySet="Musteri Listesi" />
+          <AssociationSet Name="FK_Movement_Book" Association="Self.FK_Movement_Book">
+            <End Role="Book" EntitySet="Book" />
+            <End Role="Movement" EntitySet="Movement" />
           </AssociationSet>
-          <AssociationSet Name="FK_Musteriler_Personel Listesi" Association="Self.FK_Musteriler_Personel Listesi">
-            <End Role="Personel Listesi" EntitySet="Personel Listesi" />
-            <End Role="Musteriler" EntitySet="Musteriler" />
+          <AssociationSet Name="FK_Punishment_Members" Association="Self.FK_Punishment_Members">
+            <End Role="Members" EntitySet="Members" />
+            <End Role="Punishment" EntitySet="Punishment" />
           </AssociationSet>
-          <AssociationSet Name="FK_OdaDurum_OdaBilgisi" Association="Self.FK_OdaDurum_OdaBilgisi">
-            <End Role="OdaBilgisi" EntitySet="OdaBilgisi" />
-            <End Role="OdaDurum" EntitySet="OdaDurum" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Uyeler_Personel Listesi" Association="Self.FK_Uyeler_Personel Listesi">
-            <End Role="Personel Listesi" EntitySet="Personel Listesi" />
-            <End Role="Uyeler" EntitySet="Uyeler" />
+          <AssociationSet Name="FK_Punishment_Movement" Association="Self.FK_Punishment_Movement">
+            <End Role="Movement" EntitySet="Movement" />
+            <End Role="Punishment" EntitySet="Punishment" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Fatura">
-          <Key>
-            <PropertyRef Name="FaturaID" />
-          </Key>
-          <Property Name="FaturaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MusteriID" Type="Int32" Nullable="false" />
-          <Property Name="OdemeTutari" Type="Decimal" Precision="19" Scale="4" />
-          <NavigationProperty Name="Musteriler" Relationship="Self.FK_Fatura_Musteriler" FromRole="Fatura" ToRole="Musteriler" />
-        </EntityType>
-        <EntityType Name="Musteri_Listesi">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="GirisTarihi" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="CikisTarihi" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="KonoklamaSuresi" Type="Int32" />
-          <Property Name="OdaNumarası" Type="Int32" Nullable="false" />
-          <Property Name="OdenecekUcret" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="Musteriler_ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Musteriler" Relationship="Self.FK_Musteri_Listesi_Musteriler" FromRole="Musteri_Listesi" ToRole="Musteriler" />
-          <NavigationProperty Name="OdaBilgisi" Relationship="Self.FK_Musteri_Listesi_OdaBilgisi" FromRole="Musteri_Listesi" ToRole="OdaBilgisi" />
-        </EntityType>
-        <EntityType Name="Musteriler">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Soyadi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Telefon" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Adres" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="TC" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
-          <Property Name="Personel_ID" Type="Int32" />
-          <NavigationProperty Name="Fatura" Relationship="Self.FK_Fatura_Musteriler" FromRole="Musteriler" ToRole="Fatura" />
-          <NavigationProperty Name="Musteri_Listesi" Relationship="Self.FK_Musteri_Listesi_Musteriler" FromRole="Musteriler" ToRole="Musteri_Listesi" />
-          <NavigationProperty Name="Personel_Listesi" Relationship="Self.FK_Musteriler_Personel_Listesi" FromRole="Musteriler" ToRole="Personel_Listesi" />
-        </EntityType>
-        <EntityType Name="OdaBilgisi">
-          <Key>
-            <PropertyRef Name="OdaNo" />
-          </Key>
-          <Property Name="OdaNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="KatBilgisi" Type="Int32" Nullable="false" />
-          <Property Name="GunlukFiyati" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <Property Name="KisiSayisi" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="Musteri_Listesi" Relationship="Self.FK_Musteri_Listesi_OdaBilgisi" FromRole="OdaBilgisi" ToRole="Musteri_Listesi" />
-          <NavigationProperty Name="OdaDurum" Relationship="Self.FK_OdaDurum_OdaBilgisi" FromRole="OdaBilgisi" ToRole="OdaDurum" />
-        </EntityType>
-        <EntityType Name="Personel_Listesi">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TC" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Soyadi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DogumTarihi" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Telefon" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Adres" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="CocukSayisi" Type="Int32" Nullable="false" />
-          <Property Name="Maas" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <Property Name="MesaiSaati" Type="Double" Nullable="false" />
-          <Property Name="MesaiUcreti" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <Property Name="IseGirisTarihi" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Musteriler" Relationship="Self.FK_Musteriler_Personel_Listesi" FromRole="Personel_Listesi" ToRole="Musteriler" />
-          <NavigationProperty Name="Uyeler" Relationship="Self.FK_Uyeler_Personel_Listesi" FromRole="Personel_Listesi" ToRole="Uyeler" />
-        </EntityType>
+      <Schema Namespace="devrimme_nurModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -334,138 +247,193 @@ warning 6002: The table/view 'Hotel BMB.dbo.Uyeler' does not have a primary key 
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <EntityType Name="OdaDurum">
-          <Key>
-            <PropertyRef Name="DurumID" />
-          </Key>
-          <Property Name="DurumID" Type="Int32" Nullable="false" />
-          <Property Name="OdaNo" Type="Int32" />
-          <NavigationProperty Name="OdaBilgisi" Relationship="Self.FK_OdaDurum_OdaBilgisi" FromRole="OdaDurum" ToRole="OdaBilgisi" />
-        </EntityType>
-        <EntityType Name="Uyeler">
+        <EntityType Name="Author">
           <Key>
             <PropertyRef Name="ID" />
-            <PropertyRef Name="KullanıcıAdi" />
-            <PropertyRef Name="Sifre" />
-            <PropertyRef Name="Mail" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="KullanıcıAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Sifre" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Personel_Listesi" Relationship="Self.FK_Uyeler_Personel_Listesi" FromRole="Uyeler" ToRole="Personel_Listesi" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SURNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DETAILS" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Book" Relationship="Self.FK_Book_Author" FromRole="Author" ToRole="Book" />
         </EntityType>
-        <Association Name="FK_Fatura_Musteriler">
-          <End Role="Musteriler" Type="Self.Musteriler" Multiplicity="1" />
-          <End Role="Fatura" Type="Self.Fatura" Multiplicity="*" />
+        <EntityType Name="Book">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Categories_Id" Type="Byte" />
+          <Property Name="Author_Id" Type="Int32" />
+          <Property Name="PrıntıngYear" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="Publısher" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PagesNumber" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Boolean" />
+          <NavigationProperty Name="Author" Relationship="Self.FK_Book_Author" FromRole="Book" ToRole="Author" />
+          <NavigationProperty Name="Categories" Relationship="Self.FK_Book_Categories" FromRole="Book" ToRole="Categories" />
+          <NavigationProperty Name="Movement" Relationship="Self.FK_Movement_Book" FromRole="Book" ToRole="Movement" />
+        </EntityType>
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Book" Relationship="Self.FK_Book_Categories" FromRole="Categories" ToRole="Book" />
+        </EntityType>
+        <EntityType Name="Empyloyees">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Employee" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Members">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Photography" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Punishment" Relationship="Self.FK_Punishment_Members" FromRole="Members" ToRole="Punishment" />
+        </EntityType>
+        <EntityType Name="Movement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Book_Id" Type="Int32" />
+          <Property Name="Member_ıd" Type="Int32" />
+          <Property Name="StartDate" Type="DateTime" Precision="0" />
+          <Property Name="FinishDate" Type="DateTime" Precision="0" />
+          <Property Name="Employee_Id" Type="Int32" />
+          <NavigationProperty Name="Book" Relationship="Self.FK_Movement_Book" FromRole="Movement" ToRole="Book" />
+          <NavigationProperty Name="Punishment" Relationship="Self.FK_Punishment_Movement" FromRole="Movement" ToRole="Punishment" />
+        </EntityType>
+        <EntityType Name="Punishment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Members_Id" Type="Int32" />
+          <Property Name="StartDate" Type="DateTime" Precision="0" />
+          <Property Name="FinishDate" Type="DateTime" Precision="0" />
+          <Property Name="Money" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Movement_Id" Type="Int32" />
+          <NavigationProperty Name="Members" Relationship="Self.FK_Punishment_Members" FromRole="Punishment" ToRole="Members" />
+          <NavigationProperty Name="Movement" Relationship="Self.FK_Punishment_Movement" FromRole="Punishment" ToRole="Movement" />
+        </EntityType>
+        <EntityType Name="Tıll">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Moon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Amount" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Till">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Moon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Amount" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <Association Name="FK_Book_Author">
+          <End Role="Author" Type="Self.Author" Multiplicity="0..1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Musteriler">
+            <Principal Role="Author">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Fatura">
-              <PropertyRef Name="MusteriID" />
+            <Dependent Role="Book">
+              <PropertyRef Name="Author_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Musteri_Listesi_Musteriler">
-          <End Role="Musteriler" Type="Self.Musteriler" Multiplicity="1" />
-          <End Role="Musteri_Listesi" Type="Self.Musteri_Listesi" Multiplicity="*" />
+        <Association Name="FK_Book_Categories">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Musteriler">
+            <Principal Role="Categories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="Categories_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Movement_Book">
+          <End Role="Book" Type="Self.Book" Multiplicity="1" />
+          <End Role="Movement" Type="Self.Movement" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Musteri_Listesi">
-              <PropertyRef Name="Musteriler_ID" />
+            <Dependent Role="Movement">
+              <PropertyRef Name="Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Musteri_Listesi_OdaBilgisi">
-          <End Role="OdaBilgisi" Type="Self.OdaBilgisi" Multiplicity="1" />
-          <End Role="Musteri_Listesi" Type="Self.Musteri_Listesi" Multiplicity="*" />
+        <Association Name="FK_Punishment_Members">
+          <End Role="Members" Type="Self.Members" Multiplicity="0..1" />
+          <End Role="Punishment" Type="Self.Punishment" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="OdaBilgisi">
-              <PropertyRef Name="OdaNo" />
+            <Principal Role="Members">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Musteri_Listesi">
-              <PropertyRef Name="OdaNumarası" />
+            <Dependent Role="Punishment">
+              <PropertyRef Name="Members_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Musteriler_Personel_Listesi">
-          <End Role="Personel_Listesi" Type="Self.Personel_Listesi" Multiplicity="0..1" />
-          <End Role="Musteriler" Type="Self.Musteriler" Multiplicity="*" />
+        <Association Name="FK_Punishment_Movement">
+          <End Role="Movement" Type="Self.Movement" Multiplicity="0..1" />
+          <End Role="Punishment" Type="Self.Punishment" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Personel_Listesi">
-              <PropertyRef Name="ID" />
+            <Principal Role="Movement">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Musteriler">
-              <PropertyRef Name="Personel_ID" />
+            <Dependent Role="Punishment">
+              <PropertyRef Name="Movement_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_OdaDurum_OdaBilgisi">
-          <End Role="OdaBilgisi" Type="Self.OdaBilgisi" Multiplicity="0..1" />
-          <End Role="OdaDurum" Type="Self.OdaDurum" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="OdaBilgisi">
-              <PropertyRef Name="OdaNo" />
-            </Principal>
-            <Dependent Role="OdaDurum">
-              <PropertyRef Name="OdaNo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Uyeler_Personel_Listesi">
-          <End Role="Personel_Listesi" Type="Self.Personel_Listesi" Multiplicity="1" />
-          <End Role="Uyeler" Type="Self.Uyeler" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Personel_Listesi">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Uyeler">
-              <PropertyRef Name="ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="Hotel_BMBEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Fatura" EntityType="Self.Fatura" />
-          <EntitySet Name="Musteri_Listesi" EntityType="Self.Musteri_Listesi" />
-          <EntitySet Name="Musteriler" EntityType="Self.Musteriler" />
-          <EntitySet Name="OdaBilgisi" EntityType="Self.OdaBilgisi" />
-          <EntitySet Name="Personel_Listesi" EntityType="Self.Personel_Listesi" />
+        <EntityContainer Name="devrimme_nurEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <EntitySet Name="OdaDurum" EntityType="Self.OdaDurum" />
-          <EntitySet Name="Uyeler" EntityType="Self.Uyeler" />
-          <AssociationSet Name="FK_Fatura_Musteriler" Association="Self.FK_Fatura_Musteriler">
-            <End Role="Musteriler" EntitySet="Musteriler" />
-            <End Role="Fatura" EntitySet="Fatura" />
+          <EntitySet Name="Author" EntityType="Self.Author" />
+          <EntitySet Name="Book" EntityType="Self.Book" />
+          <EntitySet Name="Categories" EntityType="Self.Categories" />
+          <EntitySet Name="Empyloyees" EntityType="Self.Empyloyees" />
+          <EntitySet Name="Members" EntityType="Self.Members" />
+          <EntitySet Name="Movement" EntityType="Self.Movement" />
+          <EntitySet Name="Punishment" EntityType="Self.Punishment" />
+          <EntitySet Name="Tıll" EntityType="Self.Tıll" />
+          <EntitySet Name="Till" EntityType="Self.Till" />
+          <AssociationSet Name="FK_Book_Author" Association="Self.FK_Book_Author">
+            <End Role="Author" EntitySet="Author" />
+            <End Role="Book" EntitySet="Book" />
           </AssociationSet>
-          <AssociationSet Name="FK_Musteri_Listesi_Musteriler" Association="Self.FK_Musteri_Listesi_Musteriler">
-            <End Role="Musteriler" EntitySet="Musteriler" />
-            <End Role="Musteri_Listesi" EntitySet="Musteri_Listesi" />
+          <AssociationSet Name="FK_Book_Categories" Association="Self.FK_Book_Categories">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Book" EntitySet="Book" />
           </AssociationSet>
-          <AssociationSet Name="FK_Musteri_Listesi_OdaBilgisi" Association="Self.FK_Musteri_Listesi_OdaBilgisi">
-            <End Role="OdaBilgisi" EntitySet="OdaBilgisi" />
-            <End Role="Musteri_Listesi" EntitySet="Musteri_Listesi" />
+          <AssociationSet Name="FK_Movement_Book" Association="Self.FK_Movement_Book">
+            <End Role="Book" EntitySet="Book" />
+            <End Role="Movement" EntitySet="Movement" />
           </AssociationSet>
-          <AssociationSet Name="FK_Musteriler_Personel_Listesi" Association="Self.FK_Musteriler_Personel_Listesi">
-            <End Role="Personel_Listesi" EntitySet="Personel_Listesi" />
-            <End Role="Musteriler" EntitySet="Musteriler" />
+          <AssociationSet Name="FK_Punishment_Members" Association="Self.FK_Punishment_Members">
+            <End Role="Members" EntitySet="Members" />
+            <End Role="Punishment" EntitySet="Punishment" />
           </AssociationSet>
-          <AssociationSet Name="FK_OdaDurum_OdaBilgisi" Association="Self.FK_OdaDurum_OdaBilgisi">
-            <End Role="OdaBilgisi" EntitySet="OdaBilgisi" />
-            <End Role="OdaDurum" EntitySet="OdaDurum" />
+          <AssociationSet Name="FK_Punishment_Movement" Association="Self.FK_Punishment_Movement">
+            <End Role="Movement" EntitySet="Movement" />
+            <End Role="Punishment" EntitySet="Punishment" />
           </AssociationSet>
-          <AssociationSet Name="FK_Uyeler_Personel_Listesi" Association="Self.FK_Uyeler_Personel_Listesi">
-            <End Role="Personel_Listesi" EntitySet="Personel_Listesi" />
-            <End Role="Uyeler" EntitySet="Uyeler" />
-          </AssociationSet>
-          <FunctionImport Name="DeleteFromCalisanlar">
-            <Parameter Name="ID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="DeleteFromMusteriler">
-            <Parameter Name="ID" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="sp_alterdiagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
@@ -482,11 +450,11 @@ warning 6002: The table/view 'Hotel BMB.dbo.Uyeler' does not have a primary key 
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(Model.sp_helpdiagramdefinition_Result)">
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(devrimme_nurModel.sp_helpdiagramdefinition_Result)">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(Model.sp_helpdiagrams_Result)">
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(devrimme_nurModel.sp_helpdiagrams_Result)">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -513,72 +481,9 @@ warning 6002: The table/view 'Hotel BMB.dbo.Uyeler' does not have a primary key 
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Hotel_BMBEntities">
-          <EntitySetMapping Name="Fatura">
-            <EntityTypeMapping TypeName="Model.Fatura">
-              <MappingFragment StoreEntitySet="Fatura">
-                <ScalarProperty Name="FaturaID" ColumnName="FaturaID" />
-                <ScalarProperty Name="MusteriID" ColumnName="MusteriID" />
-                <ScalarProperty Name="OdemeTutari" ColumnName="OdemeTutari" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Musteri_Listesi">
-            <EntityTypeMapping TypeName="Model.Musteri_Listesi">
-              <MappingFragment StoreEntitySet="Musteri Listesi">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="GirisTarihi" ColumnName="GirisTarihi" />
-                <ScalarProperty Name="CikisTarihi" ColumnName="CikisTarihi" />
-                <ScalarProperty Name="KonoklamaSuresi" ColumnName="KonoklamaSuresi" />
-                <ScalarProperty Name="OdaNumarası" ColumnName="OdaNumarası" />
-                <ScalarProperty Name="OdenecekUcret" ColumnName="OdenecekUcret" />
-                <ScalarProperty Name="Musteriler_ID" ColumnName="Musteriler_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Musteriler">
-            <EntityTypeMapping TypeName="Model.Musteriler">
-              <MappingFragment StoreEntitySet="Musteriler">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Adi" ColumnName="Adi" />
-                <ScalarProperty Name="Soyadi" ColumnName="Soyadi" />
-                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
-                <ScalarProperty Name="Adres" ColumnName="Adres" />
-                <ScalarProperty Name="TC" ColumnName="TC" />
-                <ScalarProperty Name="Personel_ID" ColumnName="Personel_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="OdaBilgisi">
-            <EntityTypeMapping TypeName="Model.OdaBilgisi">
-              <MappingFragment StoreEntitySet="OdaBilgisi">
-                <ScalarProperty Name="OdaNo" ColumnName="OdaNo" />
-                <ScalarProperty Name="KatBilgisi" ColumnName="KatBilgisi" />
-                <ScalarProperty Name="GunlukFiyati" ColumnName="GunlukFiyati" />
-                <ScalarProperty Name="KisiSayisi" ColumnName="KisiSayisi" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Personel_Listesi">
-            <EntityTypeMapping TypeName="Model.Personel_Listesi">
-              <MappingFragment StoreEntitySet="Personel Listesi">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="TC" ColumnName="TC" />
-                <ScalarProperty Name="Adi" ColumnName="Adi" />
-                <ScalarProperty Name="Soyadi" ColumnName="Soyadi" />
-                <ScalarProperty Name="DogumTarihi" ColumnName="DogumTarihi" />
-                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
-                <ScalarProperty Name="Adres" ColumnName="Adres" />
-                <ScalarProperty Name="CocukSayisi" ColumnName="CocukSayisi" />
-                <ScalarProperty Name="Maas" ColumnName="Maas" />
-                <ScalarProperty Name="MesaiSaati" ColumnName="MesaiSaati" />
-                <ScalarProperty Name="MesaiUcreti" ColumnName="MesaiUcreti" />
-                <ScalarProperty Name="IseGirisTarihi" ColumnName="IseGirisTarihi" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
+        <EntityContainerMapping StorageEntityContainer="devrimme_nurModelStoreContainer" CdmEntityContainer="devrimme_nurEntities1">
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="Model.sysdiagrams">
+            <EntityTypeMapping TypeName="devrimme_nurModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -588,40 +493,115 @@ warning 6002: The table/view 'Hotel BMB.dbo.Uyeler' does not have a primary key 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="OdaDurum">
-            <EntityTypeMapping TypeName="Model.OdaDurum">
-              <MappingFragment StoreEntitySet="OdaDurum">
-                <ScalarProperty Name="DurumID" ColumnName="DurumID" />
-                <ScalarProperty Name="OdaNo" ColumnName="OdaNo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Uyeler">
-            <EntityTypeMapping TypeName="Model.Uyeler">
-              <MappingFragment StoreEntitySet="Uyeler">
+          <EntitySetMapping Name="Author">
+            <EntityTypeMapping TypeName="devrimme_nurModel.Author">
+              <MappingFragment StoreEntitySet="Author">
                 <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="KullanıcıAdi" ColumnName="KullanıcıAdi" />
-                <ScalarProperty Name="Sifre" ColumnName="Sifre" />
-                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="SURNAME" ColumnName="SURNAME" />
+                <ScalarProperty Name="DETAILS" ColumnName="DETAILS" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="DeleteFromCalisanlar" FunctionName="Model.Store.DeleteFromCalisanlar" />
-          <FunctionImportMapping FunctionImportName="DeleteFromMusteriler" FunctionName="Model.Store.DeleteFromMusteriler" />
-          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Model.Store.sp_alterdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Model.Store.sp_creatediagram" />
-          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Model.Store.sp_dropdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Model.Store.sp_helpdiagramdefinition">
+          <EntitySetMapping Name="Book">
+            <EntityTypeMapping TypeName="devrimme_nurModel.Book">
+              <MappingFragment StoreEntitySet="Book">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Categories_Id" ColumnName="Categories_Id" />
+                <ScalarProperty Name="Author_Id" ColumnName="Author_Id" />
+                <ScalarProperty Name="PrıntıngYear" ColumnName="PrıntıngYear" />
+                <ScalarProperty Name="Publısher" ColumnName="Publısher" />
+                <ScalarProperty Name="PagesNumber" ColumnName="PagesNumber" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="devrimme_nurModel.Categories">
+              <MappingFragment StoreEntitySet="Categories">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Empyloyees">
+            <EntityTypeMapping TypeName="devrimme_nurModel.Empyloyees">
+              <MappingFragment StoreEntitySet="Empyloyees">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Employee" ColumnName="Employee" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Members">
+            <EntityTypeMapping TypeName="devrimme_nurModel.Members">
+              <MappingFragment StoreEntitySet="Members">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Photography" ColumnName="Photography" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Movement">
+            <EntityTypeMapping TypeName="devrimme_nurModel.Movement">
+              <MappingFragment StoreEntitySet="Movement">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Book_Id" ColumnName="Book_Id" />
+                <ScalarProperty Name="Member_ıd" ColumnName="Member_ıd" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="FinishDate" ColumnName="FinishDate" />
+                <ScalarProperty Name="Employee_Id" ColumnName="Employee_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Punishment">
+            <EntityTypeMapping TypeName="devrimme_nurModel.Punishment">
+              <MappingFragment StoreEntitySet="Punishment">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Members_Id" ColumnName="Members_Id" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="FinishDate" ColumnName="FinishDate" />
+                <ScalarProperty Name="Money" ColumnName="Money" />
+                <ScalarProperty Name="Movement_Id" ColumnName="Movement_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tıll">
+            <EntityTypeMapping TypeName="devrimme_nurModel.Tıll">
+              <MappingFragment StoreEntitySet="Tıll">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Moon" ColumnName="Moon" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Till">
+            <EntityTypeMapping TypeName="devrimme_nurModel.Till">
+              <MappingFragment StoreEntitySet="Till">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Moon" ColumnName="Moon" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="devrimme_nurModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="devrimme_nurModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="devrimme_nurModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="devrimme_nurModel.Store.sp_helpdiagramdefinition">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="Model.sp_helpdiagramdefinition_Result">
+              <ComplexTypeMapping TypeName="devrimme_nurModel.sp_helpdiagramdefinition_Result">
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Model.Store.sp_helpdiagrams">
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="devrimme_nurModel.Store.sp_helpdiagrams">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="Model.sp_helpdiagrams_Result">
+              <ComplexTypeMapping TypeName="devrimme_nurModel.sp_helpdiagrams_Result">
                 <ScalarProperty Name="Database" ColumnName="Database" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -630,8 +610,8 @@ warning 6002: The table/view 'Hotel BMB.dbo.Uyeler' does not have a primary key 
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Model.Store.sp_renamediagram" />
-          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Model.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="devrimme_nurModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="devrimme_nurModel.Store.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

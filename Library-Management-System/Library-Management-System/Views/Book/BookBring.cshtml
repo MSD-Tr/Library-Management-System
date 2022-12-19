@@ -1,0 +1,52 @@
+﻿@model Library_Management_System.Models.Entity.Book
+@{
+    ViewBag.Title = "BookBring";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+@using (Html.BeginForm("BookUpdate", "Book", FormMethod.Post))
+{
+
+    <div class="form-group">
+
+        <div style="margin-top:15px"></div>
+        <div>
+            <label>Kitap Id</label>
+            @Html.TextBoxFor(y => y.ID, new { @class = "form-control" })
+        </div>
+
+        <div style="margin-top:15px"></div>
+        <div>
+            <label>Kitap Adı</label>
+            @Html.TextBoxFor(y => y.Name, new { @class = "form-control" })
+        </div>
+
+        <div style="margin-top:15px"></div>
+        <div>
+            <label>Kategori</label>
+            @Html.TextBoxFor(y => y.Categories_Id, new { @class = "form-control" })
+        </div>
+        <div style="margin-top:15px"></div>
+        <div>
+            <label>Yazar </label>
+            @Html.TextBoxFor(y => y.Author_Id, new { @class = "form-control" })
+        </div>
+        <div>
+            <label>Basım Yılı </label>
+            @Html.TextBoxFor(y => y.PrıntıngYear, new { @class = "form-control" })
+        </div>
+        <div>
+            <label>Yayınevi</label>
+            @Html.TextAreaFor(y => y.Publısher, new { @class = "form-control" })
+        </div>
+        <div>
+            <label>Sayfa Sayısı </label>
+            @Html.TextBoxFor(y => y.PagesNumber, new { @class = "form-control" })
+        </div>
+        <div>
+            <label>Durum</label>
+            @Html.TextBoxFor(y => y.Status, new { @class = "form-control" })
+        </div>
+        <div style="margin-top:15px"> <button class="btn btn-warning">Kitap Bilgilerini Güncelle</button> </div>
+       
+    </div>
+}

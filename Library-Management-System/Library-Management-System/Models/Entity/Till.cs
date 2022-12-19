@@ -12,12 +12,10 @@ namespace Library_Management_System.Models.Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class Fatura
+    public partial class Till
     {
-        public int FaturaID { get; set; }
-        public int MusteriID { get; set; }
-        public Nullable<decimal> OdemeTutari { get; set; }
-    
-        public virtual Musteriler Musteriler { get; set; }
+        public int Id { get; set; }
+        public string Moon { get; set; }
+        public Nullable<decimal> Amount { get; set; }
     }
 }

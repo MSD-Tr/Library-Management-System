@@ -12,13 +12,20 @@ namespace Library_Management_System.Models.Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class Uyeler
+    public partial class Author
     {
-        public int ID { get; set; }
-        public string KullanıcıAdi { get; set; }
-        public string Sifre { get; set; }
-        public string Mail { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Author()
+        {
+            this.Book = new HashSet<Book>();
+        }
     
-        public virtual Personel_Listesi Personel_Listesi { get; set; }
+        public int ID { get; set; }
+        public string NAME { get; set; }
+        public string SURNAME { get; set; }
+        public string DETAILS { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Book> Book { get; set; }
     }
 }

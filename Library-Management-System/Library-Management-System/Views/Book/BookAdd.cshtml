@@ -1,0 +1,49 @@
+﻿@model Library_Management_System.Models.Entity.Book
+@{
+    ViewBag.Title = "BookAdd";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<form class="form-group" method="post">
+    <div></div>
+
+    <div style="margin-top:15px"></div>
+    <div>
+        <label>Kitap Adı</label>
+        @Html.TextBoxFor(k => k.Name, new { @class = "form-control" })
+    </div>
+
+    <div style="margin-top:15px"></div>
+    <div>
+        <label>Kitap Kategori</label>
+        @Html.DropDownListFor(k => k.Categories.Id,( List < SelectListItem > )ViewBag.dgr1, new {@class="form-control"})
+    </div>
+
+    <div style="margin-top:15px"></div>
+    <div>
+        <label>Kitap Yazar</label>
+        @Html.DropDownListFor(k => k.Author.ID, (List<SelectListItem>)ViewBag.dgr2, new { @class = "form-control" })
+    </div>
+    <div style="margin-top:15px"></div>
+    <div>
+        <label>Basım Yılı</label>
+        @Html.TextBoxFor(k => k.PrıntıngYear, new { @class = "form-control" })
+    </div>
+    <div style="margin-top:15px"></div>
+    <div>
+        <label>Yayınevi</label>
+        @Html.TextBoxFor(k => k.Publısher, new { @class = "form-control" })
+    </div>
+    <div style="margin-top:15px"></div>
+    <div>
+        <label>Sayfa Sayısı</label>
+        @Html.TextBoxFor(k => k.PagesNumber, new { @class = "form-control" })
+    </div>
+    <div style="margin-top:15px">
+        <button class="btn btn-warning">Yeni Kitap Ekle</button>
+    </div>
+       
+    
+    
+
+    </form>

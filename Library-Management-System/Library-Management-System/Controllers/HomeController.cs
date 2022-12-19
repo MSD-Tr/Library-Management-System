@@ -3,40 +3,33 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Library_Management_System.Models.Entity;
+
 
 namespace Library_Management_System.Controllers
 {
+    //ActionResult backend tarafındaki aksiyonları views(sayfa) kısmına kazandırmak için kullanılır.her biri birer methodu(işlem)temsil eder.
     public class HomeController : Controller
     {
+        devrimme_nurEntities1 db = new devrimme_nurEntities1();
+        // GET: Home
         public ActionResult Index()
         {
+            var degerler = db.Categories.ToList();
+            return View(degerler);
+        }
+        [HttpGet]
+        public ActionResult CategoryAdd()
+        {
             return View();
         }
-
-        public ActionResult About()
+        [HttpPost]
+        public ActionResult CategoryAdd(Categories p)
         {
-            ViewBag.Message = "Your application description page.";
-
+            db.Categories.Add(p);
+            db.SaveChanges();
             return View();
-        }
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-        public ActionResult Services()
-        {
-            ViewBag.Message = "Your Services Page.";
-
-            return View();
-        }
-        public ActionResult Misra()
-        {
-            ViewBag.Message = "Your Misra Page.";
-
-            return View();
         }
     }
 }

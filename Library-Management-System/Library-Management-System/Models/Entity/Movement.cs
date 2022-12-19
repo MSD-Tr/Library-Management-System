@@ -12,27 +12,23 @@ namespace Library_Management_System.Models.Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class Musteriler
+    public partial class Movement
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Musteriler()
+        public Movement()
         {
-            this.Fatura = new HashSet<Fatura>();
-            this.Musteri_Listesi = new HashSet<Musteri_Listesi>();
+            this.Punishment = new HashSet<Punishment>();
         }
     
-        public int ID { get; set; }
-        public string Adi { get; set; }
-        public string Soyadi { get; set; }
-        public string Telefon { get; set; }
-        public string Adres { get; set; }
-        public string TC { get; set; }
-        public Nullable<int> Personel_ID { get; set; }
+        public int Id { get; set; }
+        public Nullable<int> Book_Id { get; set; }
+        public Nullable<int> Member_ıd { get; set; }
+        public Nullable<System.DateTime> StartDate { get; set; }
+        public Nullable<System.DateTime> FinishDate { get; set; }
+        public Nullable<int> Employee_Id { get; set; }
     
+        public virtual Book Book { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Fatura> Fatura { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Musteri_Listesi> Musteri_Listesi { get; set; }
-        public virtual Personel_Listesi Personel_Listesi { get; set; }
+        public virtual ICollection<Punishment> Punishment { get; set; }
     }
 }

@@ -12,17 +12,19 @@ namespace Library_Management_System.Models.Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class Musteri_Listesi
+    public partial class Book
     {
         public int ID { get; set; }
-        public System.DateTime GirisTarihi { get; set; }
-        public System.DateTime CikisTarihi { get; set; }
-        public Nullable<int> KonoklamaSuresi { get; set; }
-        public int OdaNumarası { get; set; }
-        public Nullable<decimal> OdenecekUcret { get; set; }
-        public int Musteriler_ID { get; set; }
+        public string Name { get; set; }
+        public Nullable<byte> Categories_Id { get; set; }
+        public Nullable<int> Author_Id { get; set; }
+        public string PrıntıngYear { get; set; }
+        public string Publısher { get; set; }
+        public string PagesNumber { get; set; }
+        public Nullable<bool> Status { get; set; }
     
-        public virtual Musteriler Musteriler { get; set; }
-        public virtual OdaBilgisi OdaBilgisi { get; set; }
+        public virtual Author Author { get; set; }
+        public virtual Categories Categories { get; set; }
+        public virtual Movement Movement { get; set; }
     }
 }

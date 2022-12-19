@@ -12,11 +12,16 @@ namespace Library_Management_System.Models.Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class OdaDurum
+    public partial class Punishment
     {
-        public int DurumID { get; set; }
-        public Nullable<int> OdaNo { get; set; }
+        public int Id { get; set; }
+        public Nullable<int> Members_Id { get; set; }
+        public Nullable<System.DateTime> StartDate { get; set; }
+        public Nullable<System.DateTime> FinishDate { get; set; }
+        public Nullable<decimal> Money { get; set; }
+        public Nullable<int> Movement_Id { get; set; }
     
-        public virtual OdaBilgisi OdaBilgisi { get; set; }
+        public virtual Members Members { get; set; }
+        public virtual Movement Movement { get; set; }
     }
 }

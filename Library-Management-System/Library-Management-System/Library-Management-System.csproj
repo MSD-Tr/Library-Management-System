@@ -128,12 +128,26 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\DefaultController.cs" />
+    <Compile Include="Controllers\AuthorController.cs" />
+    <Compile Include="Controllers\BookController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Entity\Fatura.cs">
+    <Compile Include="Models\Entity\Author.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entity\Book.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entity\Categories.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entity\Empyloyees.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entity\Members.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entity\Model1.Context.cs">
@@ -151,19 +165,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Entity\Musteriler.cs">
+    <Compile Include="Models\Entity\Movement.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Entity\Musteri_Listesi.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Entity\OdaBilgisi.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Entity\OdaDurum.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Entity\Personel_Listesi.cs">
+    <Compile Include="Models\Entity\Punishment.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entity\sp_helpdiagramdefinition_Result.cs">
@@ -175,7 +180,10 @@
     <Compile Include="Models\Entity\sysdiagrams.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Entity\Uyeler.cs">
+    <Compile Include="Models\Entity\Till.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entity\Tıll.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -191,8 +199,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Models\Entity\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
       <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\Entity\Model1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -229,13 +237,21 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Default\Index.cshtml" />
+    <Content Include="Views\Shared\Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\Services.cshtml" />
-    <Content Include="Views\Home\Misra.cshtml" />
-    <Content Include="Views\Default\Cihat.cshtml" />
+    <Content Include="Views\CategoryAdd\Index.cshtml" />
+    <Content Include="Views\CategoryAdd\Category.cshtml" />
+    <Content Include="Views\Category\Index.cshtml" />
+    <Content Include="Views\Category\CategoryAdd.cshtml" />
+    <Content Include="Views\Home\CategoryAdd.cshtml" />
+    <Content Include="Views\Category\CategoryBring.cshtml" />
+    <Content Include="Views\Author\Index.cshtml" />
+    <Content Include="Views\Author\AuthorAdd.cshtml" />
+    <Content Include="Views\Author\AuthorBring.cshtml" />
+    <Content Include="Views\Book\Index.cshtml" />
+    <Content Include="Views\Book\BookAdd.cshtml" />
+    <Content Include="Views\Book\BookBring.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,30 @@
+﻿@using Library_Management_System.Models.Entity
+@model List<Categories>
+@{
+
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2>Kategoriler</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Kategori Id/th>
+        <th>Kategori Adı</th>
+        <th>Sil</th>
+        <th>Güncelle</th>
+
+    </tr>
+
+    @foreach (var ctg in Model)
+    {
+
+        <tr>
+            <td>@ctg.Id</td>
+            <td>@ctg.Name</td>
+            <td><a href="/Category/CategoryDelete/@ctg.Id" class="btn btn-danger">Sil</a></td>
+            <td><a href="/Category/CategoryBring/@ctg.Id" class="btn btn-primary list-group-item-heading">Güncelle</a></td>
+        </tr>
+    }
+</table>
+<a href="/Category/CategoryAdd/" class="btn btn-primary">Yeni Kategori Ekle</a>

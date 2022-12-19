@@ -1,0 +1,36 @@
+﻿@model Library_Management_System.Models.Entity.Author
+@{
+    ViewBag.Title = "AuthorBring";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@using (Html.BeginForm("AuthorUpdate", "Author", FormMethod.Post))
+{
+
+    <div class="form-group">
+
+        <div style="margin-top:15px"></div>
+        <div>
+            <label>Yazar Id</label>
+            @Html.TextBoxFor(y => y.ID, new { @class = "form-control" })
+        </div>
+
+        <div style="margin-top:15px"></div>
+        <div>
+            <label>Yazar Adı</label>
+            @Html.TextBoxFor(y => y.NAME, new { @class = "form-control" })
+        </div>
+
+        <div style="margin-top:15px"></div>
+        <div>
+            <label>Yazar Soyadı</label>
+            @Html.TextBoxFor(y => y.SURNAME, new { @class = "form-control" })
+        </div>
+        <div style="margin-top:15px"></div>
+        <div>
+            <label>Yazar Detay</label>
+            @Html.TextAreaFor(y => y.DETAILS, new { @class = "form-control" })
+        </div>
+        <button class="btn btn-warning">Yazar Bilgilerini Güncelle</button>
+    </div>
+}

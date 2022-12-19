@@ -1,0 +1,21 @@
+﻿@using Library_Management_System.Models.Entity
+@model List<Categories>
+
+@{
+    ViewBag.Title = "CategoryAdd";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<form class="form-group" method="post">
+    <div></div>
+    <div style="margin-top:15px">
+        <label>Kategori Adı</label>
+        <input type="text" class="form-control" name="Name" />
+    </div>
+    <div style="margin-top:15px">
+        <button class="btn btn-info" id="btn1">Kategori Ekle</button>
+    </div>
+</form>
+
+
+

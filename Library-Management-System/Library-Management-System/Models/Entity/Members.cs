@@ -12,23 +12,23 @@ namespace Library_Management_System.Models.Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class OdaBilgisi
+    public partial class Members
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public OdaBilgisi()
+        public Members()
         {
-            this.Musteri_Listesi = new HashSet<Musteri_Listesi>();
-            this.OdaDurum = new HashSet<OdaDurum>();
+            this.Punishment = new HashSet<Punishment>();
         }
     
-        public int OdaNo { get; set; }
-        public int KatBilgisi { get; set; }
-        public decimal GunlukFiyati { get; set; }
-        public long KisiSayisi { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public string Mail { get; set; }
+        public string Password { get; set; }
+        public string Photography { get; set; }
+        public string PhoneNumber { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Musteri_Listesi> Musteri_Listesi { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OdaDurum> OdaDurum { get; set; }
+        public virtual ICollection<Punishment> Punishment { get; set; }
     }
 }

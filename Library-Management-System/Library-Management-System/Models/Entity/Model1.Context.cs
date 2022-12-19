@@ -15,10 +15,10 @@ namespace Library_Management_System.Models.Entity
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class Hotel_BMBEntities : DbContext
+    public partial class devrimme_nurEntities1 : DbContext
     {
-        public Hotel_BMBEntities()
-            : base("name=Hotel_BMBEntities")
+        public devrimme_nurEntities1()
+            : base("name=devrimme_nurEntities1")
         {
         }
     
@@ -27,32 +27,16 @@ namespace Library_Management_System.Models.Entity
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Fatura> Fatura { get; set; }
-        public virtual DbSet<Musteri_Listesi> Musteri_Listesi { get; set; }
-        public virtual DbSet<Musteriler> Musteriler { get; set; }
-        public virtual DbSet<OdaBilgisi> OdaBilgisi { get; set; }
-        public virtual DbSet<Personel_Listesi> Personel_Listesi { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
-        public virtual DbSet<OdaDurum> OdaDurum { get; set; }
-        public virtual DbSet<Uyeler> Uyeler { get; set; }
-    
-        public virtual int DeleteFromCalisanlar(Nullable<int> iD)
-        {
-            var iDParameter = iD.HasValue ?
-                new ObjectParameter("ID", iD) :
-                new ObjectParameter("ID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteFromCalisanlar", iDParameter);
-        }
-    
-        public virtual int DeleteFromMusteriler(Nullable<int> iD)
-        {
-            var iDParameter = iD.HasValue ?
-                new ObjectParameter("ID", iD) :
-                new ObjectParameter("ID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteFromMusteriler", iDParameter);
-        }
+        public virtual DbSet<Author> Author { get; set; }
+        public virtual DbSet<Book> Book { get; set; }
+        public virtual DbSet<Categories> Categories { get; set; }
+        public virtual DbSet<Empyloyees> Empyloyees { get; set; }
+        public virtual DbSet<Members> Members { get; set; }
+        public virtual DbSet<Movement> Movement { get; set; }
+        public virtual DbSet<Punishment> Punishment { get; set; }
+        public virtual DbSet<Tıll> Tıll { get; set; }
+        public virtual DbSet<Till> Till { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
