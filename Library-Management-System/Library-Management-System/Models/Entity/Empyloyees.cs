@@ -11,10 +11,13 @@ namespace Library_Management_System.Models.Entity
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Empyloyees
     {
         public int Id { get; set; }
+        [Required(ErrorMessage ="Personel Adı Boş Geçilemez")]
+        //veri tabanı sınırlandırması için kullanılır.
         public string Employee { get; set; }
     }
 }

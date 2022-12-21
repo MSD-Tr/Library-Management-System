@@ -11,42 +11,42 @@
         <div style="margin-top:15px"></div>
         <div>
             <label>Kitap Id</label>
-            @Html.TextBoxFor(y => y.ID, new { @class = "form-control" })
+            @Html.TextBoxFor(k => k.ID, new { @class = "form-control" })
         </div>
 
         <div style="margin-top:15px"></div>
         <div>
             <label>Kitap Adı</label>
-            @Html.TextBoxFor(y => y.Name, new { @class = "form-control" })
+            @Html.TextBoxFor(k => k.Name, new { @class = "form-control" })
         </div>
 
         <div style="margin-top:15px"></div>
         <div>
             <label>Kategori</label>
-            @Html.TextBoxFor(y => y.Categories_Id, new { @class = "form-control" })
+            @Html.DropDownListFor(k => k.Categories.Id,(List<SelectListItem>)ViewBag.dgr1,new{@class="form-control"})
         </div>
         <div style="margin-top:15px"></div>
         <div>
             <label>Yazar </label>
-            @Html.TextBoxFor(y => y.Author_Id, new { @class = "form-control" })
+          @Html.DropDownListFor(k => k.Author.ID, (List<SelectListItem>)ViewBag.dgr2, new {@class="form-control"})
         </div>
         <div>
             <label>Basım Yılı </label>
-            @Html.TextBoxFor(y => y.PrıntıngYear, new { @class = "form-control" })
+            @Html.TextBoxFor(k => k.PrıntıngYear, new { @class = "form-control" })
         </div>
         <div>
             <label>Yayınevi</label>
-            @Html.TextAreaFor(y => y.Publısher, new { @class = "form-control" })
+            @Html.TextBoxFor(k => k.Publısher, new { @class = "form-control" })
         </div>
         <div>
             <label>Sayfa Sayısı </label>
-            @Html.TextBoxFor(y => y.PagesNumber, new { @class = "form-control" })
+            @Html.TextBoxFor(k => k.PagesNumber, new { @class = "form-control" })
         </div>
         <div>
             <label>Durum</label>
-            @Html.TextBoxFor(y => y.Status, new { @class = "form-control" })
+            @Html.TextBoxFor(k => k.Status, new { @class = "form-control" })
         </div>
         <div style="margin-top:15px"> <button class="btn btn-warning">Kitap Bilgilerini Güncelle</button> </div>
-       
+
     </div>
 }
