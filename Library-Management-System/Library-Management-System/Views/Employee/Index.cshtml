@@ -5,25 +5,26 @@
     Layout = "~/Views/Shared/Layout.cshtml";
 }
 
-<h2>Personeller</h2>
-<table class="table table-bordered" >
+<h2>Kategoriler</h2>
 
-
+<table class="table table-bordered">
     <tr>
-        <th>Personel Id</th>
-        <th>Personel Adı</th>
+        <th>Kategori Id</th>
+        <th>Kategori Adı</th>
         <th>Sil</th>
         <th>Güncelle</th>
+
     </tr>
+
     @foreach (var prs in Model)
     {
-        <tr>
 
-            <td>@prs.Id </td>
+        <tr>
+            <td>@prs.Id</td>
             <td>@prs.Employee</td>
             <td><a href="/Employee/EmployeeDelete/@prs.Id" class="btn btn-danger">Sil</a></td>
-            <td><a href="/Employee/EmployeeBring/@prs.Id" class="btn btn-success">Güncelle</a></td>
+            <td><a href="/Employee/EmployeeBring/@prs.Id" class="btn btn-primary list-group-item-heading">Güncelle</a></td>
         </tr>
     }
 </table>
-<a href="/Employee/EmployeeAdd/" class="btn btn-primary">Yeni Personel Ekle</a>
+<a href="/Employee/EmployeeAdd" class="btn btn-primary">Yeni Personel Ekle</a>

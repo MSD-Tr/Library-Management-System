@@ -1,0 +1,42 @@
+﻿@model Library_Management_System.Models.Entity.Members
+@{
+    ViewBag.Title = "MembersBring";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@using (Html.BeginForm("MembersUpdate", "Members", FormMethod.Post))
+{<div style="margin-bottom:15px"></div>
+ <div class="form-group">
+     <label>Üye Id</label>
+     @*@Html.LabelFor(k => k.Id)*@
+     @Html.TextBoxFor(k => k.Id, new { @class = "form-control" })
+     <br />
+     <label>Üye Adı</label>
+     @Html.TextBoxFor(k => k.Name, new { @class = "form-control" })
+     <br />
+     <label>Üye SoyAdı</label>
+     @Html.TextBoxFor(k => k.Surname, new { @class = "form-control" })
+     <br />
+     <label>Üye Kullanıcı Adı</label>
+     @Html.TextBoxFor(k => k.UserName, new { @class = "form-control" })
+     <br />
+     <label>Şifre</label>
+     @Html.TextBoxFor(k => k.Password, new { @class = "form-control" })
+     <br />
+     <label>Üye Mail</label>
+     @Html.TextBoxFor(k => k.Mail, new { @class = "form-control" })
+     <br />
+     <label> Üye Telefon</label>
+     @Html.TextBoxFor(k => k.PhoneNumber, new { @class = "form-control" })
+     <br />
+     <label>Üye Okul</label>
+     @Html.TextBoxFor(k => k.School, new { @class = "form-control" })
+     <br />
+     <label> Üye Fotoğraf</label>
+     @Html.TextBoxFor(k => k.PhoneNumber, new { @class = "form-control" })
+     <br />
+ </div>
+ <div><button class="btn btn-success">Güncelle</button> </div>
+  
+}
+

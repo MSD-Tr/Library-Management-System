@@ -43,12 +43,12 @@ namespace Library_Management_System.Controllers
         }
         public ActionResult EmployeeBring(int id)
         {
-            var prs= db.Empyloyees.Find(id);
+            var prs = db.Empyloyees.Find(id);
             return View("EmployeeBring", prs);
         }
         public ActionResult EmployeeUpdate(Empyloyees p )
         {
-            var prs=db.Empyloyees.Find(p.Id);
+            var prs = db.Empyloyees.Find(p.Id);
             prs.Employee = p.Employee;
             db.SaveChanges();
             return RedirectToAction("Index");

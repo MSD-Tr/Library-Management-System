@@ -1,0 +1,39 @@
+﻿@model Library_Management_System.Models.Entity.Movement
+@{
+    ViewBag.Title = "Entrust";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2>Ödünç Kitap Ver</h2>
+<form class="form-group" method="post">
+    <div></div>
+
+    <div style="margin-top:15px"></div>
+    <div>
+        <label>Üye ID</label>
+        @Html.TextBoxFor(k => k.Id, new { @class = "form-control" })
+    </div>
+
+    <div style="margin-top:15px"></div>
+    <div>
+        <label>kitap Id</label>
+        @Html.TextBoxFor(k => k.Book_Id, new { @class = "form-control" })
+    </div>
+    <div style="margin-top:15px">
+        <label>Personel Id</label>
+        @Html.TextBoxFor(k => k.Employee_Id, new { @class = "form-control" })
+    </div>
+    <div style="margin-top:15px">
+        <label>Kitap Emanet Tarihi</label>
+        <input type="text" class="form-control" name="alistarihi" value="@DateTime.Now.ToShortDateString()" />
+    </div>
+    <div style="margin-top:15px">
+        <label>Kitap İade Tarihi</label>
+        <input type="text" class="form-control" name="teslimtarihi" value="@DateTime.Now.AddDays(7).ToShortDateString()"
+    </div>
+    <div style="margin-top:15px">
+        <button class="btn btn-group" style="background-color:#00ff21">Kitabı Ödünç Ver</button>
+    </div>
+
+</form>
+
