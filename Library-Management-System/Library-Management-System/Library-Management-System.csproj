@@ -138,9 +138,9 @@
     <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
+    <Compile Include="Controllers\EntrustController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MembersController.cs" />
-    <Compile Include="Controllers\MovementController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -265,7 +265,7 @@
     <Content Include="Views\Members\Index.cshtml" />
     <Content Include="Views\Members\MembersAdd.cshtml" />
     <Content Include="Views\Members\MembersBring.cshtml" />
-    <Content Include="Views\Movement\Entrust.cshtml" />
+    <Content Include="Views\Loaned\Entrust.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -11,8 +11,7 @@ namespace Library_Management_System.Models.Entity
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Members
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,14 +21,11 @@ namespace Library_Management_System.Models.Entity
         }
     
         public int Id { get; set; }
-        [Required(ErrorMessage ="Ad alanı boş geçilemez.")]
-        [StringLength(20,ErrorMessage ="Max 20 karakter giriniz")]
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Mail { get; set; }
         public string Photography { get; set; }
         public string UserName { get; set; }
-        [StringLength(10, ErrorMessage = "Max 10 karakter giriniz")]
         public string Password { get; set; }
         public string PhoneNumber { get; set; }
         public string School { get; set; }
