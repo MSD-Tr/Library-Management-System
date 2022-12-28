@@ -1,0 +1,45 @@
+﻿@model Library_Management_System.Models.Entity.Movement
+@{
+    ViewBag.Title = "EntrustReturn";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@using (Html.BeginForm("EntrustUpdate", "Entruts", FormMethod.Post))
+{
+    <div style="margin-top:15px" ;>
+
+    </div>
+    <div class="form-group">
+        <label>Hareket Id</label>
+        @Html.TextBoxFor(k => k.Id, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label>Kitap Adı</label>
+        @Html.TextBoxFor(k => k.Book.Name, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label>Üye</label>
+        @Html.TextBoxFor(k => k.Members.Name, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label>Personel</label>
+        @Html.TextBoxFor(k => k.Empyloyees.Employee, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label>Alış Tarihi</label>
+        @Html.TextBoxFor(k => k.StartDate, "{0:dd.MM.yyyy}", new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label>Normal İade Tarihi</label>
+        @Html.TextBoxFor(k => k.FinishDate, "{0:dd.MM.yyyy}", new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label>Üye Teslim Tarihi</label>
+        <input type="text" class="form-control" name="MemberBringTime" value="@DateTime.Now.ToShortDateString()" />
+    </div>
+
+    <div>
+        <button class="btn btn-warning">Ödünç Kitabı Geri Al</button>
+    </div>
+   }
+

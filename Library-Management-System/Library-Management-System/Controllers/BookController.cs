@@ -10,8 +10,9 @@ namespace Library_Management_System.Controllers
 {
     public class BookController : Controller
     {
+        devrimme_nurEntities db = new devrimme_nurEntities();
         // GET: Book
-        devrimme_nurEntities1 db = new devrimme_nurEntities1();
+       
         public ActionResult Index(string p)
         {
             var book = from k in db.Book select k;
@@ -93,6 +94,7 @@ namespace Library_Management_System.Controllers
             book.PrıntıngYear = p.PrıntıngYear;
             book.PagesNumber = p.PagesNumber;
             book.Publısher = p.Publısher;
+            book.Status = true;
             var ktg = db.Categories.Where(k => k.Id == p.Categories.Id).FirstOrDefault();
             var yzr = db.Author.Where(k => k.ID == p.Author.ID).FirstOrDefault();
             book.Categories_Id = ktg.Id;

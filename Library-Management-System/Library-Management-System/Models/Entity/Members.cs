@@ -17,6 +17,7 @@ namespace Library_Management_System.Models.Entity
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Members()
         {
+            this.Movement = new HashSet<Movement>();
             this.Punishment = new HashSet<Punishment>();
         }
     
@@ -30,6 +31,8 @@ namespace Library_Management_System.Models.Entity
         public string PhoneNumber { get; set; }
         public string School { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Movement> Movement { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Punishment> Punishment { get; set; }
     }

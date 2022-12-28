@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/Layout.cshtml";
 }
 
-<h2>Kitap Sayfası</h2>
+<h2>Kitaplar</h2>
 @using (Html.BeginForm("Index", "Book", FormMethod.Get))
         {
 <div style = "margin-top:15px; margin-bottom:15px;" >
@@ -17,8 +17,8 @@
 
         }
 
-<table class="table table-bordered">
-    <tr>
+<table class="table table-striped">
+    <tr style="background-color:rgb(252,178,22)">
         <th>Id</th>
         <th>Kitap Adı</th>
         <th>Kitap Yazarı</th>
@@ -31,20 +31,20 @@
         <th>Güncelle</th>
     </tr>
     @*İlişkili tablolar üzerinde listeleme yapıldı.*@
-    @foreach(var k in Model)
-            {
-                <tr>
-                    <td>@k.ID</td>
-                    <td>@k.Name</td>
-                    <td>@k.Author.NAME &nbsp @k.Author.SURNAME</td>
-                    <td>@k.Categories.Name</td>
-                    <td>@k.PrıntıngYear</td>
-                    <td>@k.Publısher</td>
-                    <td>@k.PagesNumber</td>
-                    <td>@k.Status</td>
-                    <td><a href="/Book/BookDelete/@k.ID" class="btn btn-danger">Sil</a></td>
-                    <td><a href="/Book/BookBring/@k.ID/" class="btn btn-success">Güncelle</a></td>
-                </tr>
-            }
+    @foreach (var k in Model)
+    {
+        <tr>
+            <td>@k.ID</td>
+            <td>@k.Name</td>
+            <td>@k.Author.NAME &nbsp @k.Author.SURNAME</td>
+            <td>@k.Categories.Name</td>
+            <td>@k.PrıntıngYear</td>
+            <td>@k.Publısher</td>
+            <td>@k.PagesNumber</td>
+            <td>@k.Status</td>
+            <td><a href="/Book/BookDelete/@k.ID" class="btn btn-danger">Sil</a></td>
+            <td><a href="/Book/BookBring/@k.ID/" class="btn btn-success">Güncelle</a></td>
+        </tr>
+    }
 </table>
 <a href="/Book/BookAdd/" class="btn btn-primary">Yeni Kitap Ekle</a>

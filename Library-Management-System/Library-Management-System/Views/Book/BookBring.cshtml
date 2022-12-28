@@ -46,7 +46,10 @@
             <label>Durum</label>
             @Html.TextBoxFor(k => k.Status, new { @class = "form-control" })
         </div>
-        <div style="margin-top:15px"> <button class="btn btn-warning">Kitap Bilgilerini Güncelle</button> </div>
+        <div style="margin-top:15px">
+            <button class="btn btn-warning">Kitap Bilgilerini Güncelle</button>
+            <input type="hidden" name="Status" value="True" />
+        </div>
 
     </div>
 }

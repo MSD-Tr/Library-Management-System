@@ -14,6 +14,12 @@ namespace Library_Management_System.Models.Entity
     
     public partial class Book
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Book()
+        {
+            this.Movement = new HashSet<Movement>();
+        }
+    
         public int ID { get; set; }
         public string Name { get; set; }
         public Nullable<byte> Categories_Id { get; set; }
@@ -22,9 +28,11 @@ namespace Library_Management_System.Models.Entity
         public string Publısher { get; set; }
         public string PagesNumber { get; set; }
         public Nullable<bool> Status { get; set; }
+        public string Picture { get; set; }
     
         public virtual Author Author { get; set; }
         public virtual Categories Categories { get; set; }
-        public virtual Movement Movement { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Movement> Movement { get; set; }
     }
 }

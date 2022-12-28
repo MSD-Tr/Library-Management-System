@@ -7,8 +7,8 @@
 
 <h2>Caategories</h2>
 
-<table class="table table-bordered">
-    <tr>
+<table class="table table-striped">
+    <tr style="background-color:rgb(252,178,22)">
         <td>Kategori Id</td>
         <td>Kategori Adı</td>
         <td>Sil</td>
@@ -16,14 +16,15 @@
 
     </tr>
 
-    @foreach (var ctg in Model) {   
-    
-<tr>
-    <td>@ctg.Id</td>
-    <td>@ctg.Name</td>
-    <td><a href="#" class="btn btn-danger">Sil</a></td>
-    <td><a href="#" class="btn btn-primary list-group-item-heading">Güncelle</a></td>
-</tr>
+    @foreach (var ctg in Model)
+    {
+
+        <tr>
+            <td>@ctg.Id</td>
+            <td>@ctg.Name</td>
+            <td><a href="#" class="btn btn-danger">Sil</a></td>
+            <td><a href="#" class="btn btn-primary list-group-item-heading">Güncelle</a></td>
+        </tr>
     }
 </table>
 <a href="/Category/CategoryAdd" class="btn btn-primary">Yeni Kategori Ekle</a>

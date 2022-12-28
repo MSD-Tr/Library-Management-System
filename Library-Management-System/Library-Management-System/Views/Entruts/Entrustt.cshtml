@@ -1,9 +1,10 @@
 ﻿@model Library_Management_System.Models.Entity.Movement
 @{
-    ViewBag.Title = "entrust";
+    ViewBag.Title = "Entrustt";
     Layout = "~/Views/Shared/Layout.cshtml";
 }
 
+<h2>Ödünç Ver </h2>
 <form class="form-group" method="post">
     <div></div>
     <div style="margin-top:15px">
@@ -15,19 +16,21 @@
         @Html.TextBoxFor(k => k.Book_Id, new { @class = "form-control" })
     </div>
     <div style="margin-top:15px">
+
         <label>Personel ID</label>
         @Html.TextBoxFor(k => k.Employee_Id, new { @class = "form-control" })
     </div>
     <div style="margin-top:15px">
         <label>Kitap Alış Tarihi</label>
-        <input type="text" class="form-control" name="StartDate" value="@DateTime.Now.ToShortDateString()" /> 
+        <input type="text" class="form-control" name="StartDate" value="@DateTime.Now.ToShortDateString()" /> @*@c# kodu olduğu için başına @ koyulur ve şuanın tarihinin kısa halini göster demek.*@
     </div>
     <div style="margin-top:15px">
         <label>Kitap İade Tarihi</label>
-        <input type="text" class="form-control" name="FinishDate" value=" @DateTime.Now.AddDays(7).ToShortDateString() " /> 
+        <input type="text" class="form-control" name="FinishDate" value=" @DateTime.Now.AddDays(7).ToShortDateString() " /> @*@şuanın tarihinden 7 gün sonrayı göster demek.@*@
     </div>
     <div style="margin-top:15px">
-        <button class="btn btn-group" style="background-color:#a330b5;color:white">Kitabı Ödünç Ver</button>
+        <button class="btn btn-group" style="background-color:#086d41;color:white">Kitabı Ödünç Ver</button> 
+        <input type="hidden" value="False" name="MovementStatus" />
     </div>
-
+   
 </form>

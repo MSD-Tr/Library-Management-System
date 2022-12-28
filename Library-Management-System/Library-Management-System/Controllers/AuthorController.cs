@@ -9,7 +9,8 @@ namespace Library_Management_System.Controllers
 {
     public class AuthorController : Controller
     {
-        devrimme_nurEntities1 db = new devrimme_nurEntities1();
+        devrimme_nurEntities db = new devrimme_nurEntities();
+        
         // GET: Author
         public ActionResult Index()
         {

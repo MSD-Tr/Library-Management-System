@@ -9,7 +9,7 @@ namespace Library_Management_System.Controllers
 {
     public class CategoryController : Controller
     {
-        devrimme_nurEntities1 db = new devrimme_nurEntities1();
+        devrimme_nurEntities db = new devrimme_nurEntities();
         // GET: Category
         public ActionResult Index()
         {

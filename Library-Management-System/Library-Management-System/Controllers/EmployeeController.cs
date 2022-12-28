@@ -11,7 +11,7 @@ namespace Library_Management_System.Controllers
     public class EmployeeController : Controller
     {
         // GET: Employee
-        devrimme_nurEntities1 db = new devrimme_nurEntities1();
+        devrimme_nurEntities db = new devrimme_nurEntities();
         public ActionResult Index()
         {
         var deger=db.Empyloyees.ToList();

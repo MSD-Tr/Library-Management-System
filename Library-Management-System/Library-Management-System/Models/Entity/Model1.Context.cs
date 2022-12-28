@@ -15,10 +15,10 @@ namespace Library_Management_System.Models.Entity
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class devrimme_nurEntities1 : DbContext
+    public partial class devrimme_nurEntities : DbContext
     {
-        public devrimme_nurEntities1()
-            : base("name=devrimme_nurEntities1")
+        public devrimme_nurEntities()
+            : base("name=devrimme_nurEntities")
         {
         }
     
@@ -28,6 +28,7 @@ namespace Library_Management_System.Models.Entity
         }
     
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<About> About { get; set; }
         public virtual DbSet<Author> Author { get; set; }
         public virtual DbSet<Book> Book { get; set; }
         public virtual DbSet<Categories> Categories { get; set; }
@@ -36,6 +37,7 @@ namespace Library_Management_System.Models.Entity
         public virtual DbSet<Movement> Movement { get; set; }
         public virtual DbSet<Punishment> Punishment { get; set; }
         public virtual DbSet<Tıll> Tıll { get; set; }
+        public virtual DbSet<Contact> Contact { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

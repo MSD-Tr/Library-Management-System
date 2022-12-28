@@ -11,7 +11,7 @@ namespace Library_Management_System.Controllers
     //ActionResult backend tarafındaki aksiyonları views(sayfa) kısmına kazandırmak için kullanılır.her biri birer methodu(işlem)temsil eder.
     public class HomeController : Controller
     {
-        devrimme_nurEntities1 db = new devrimme_nurEntities1();
+        devrimme_nurEntities db = new devrimme_nurEntities();
         // GET: Home
         public ActionResult Index()
         {
