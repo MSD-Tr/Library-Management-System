@@ -36,10 +36,15 @@
     <div class="form-group">
         <label>Üye Teslim Tarihi</label>
         <input type="text" class="form-control" name="MemberBringTime" value="@DateTime.Now.ToShortDateString()" />
-    </div>
 
-    <div>
-        <button class="btn btn-warning">Ödünç Kitabı Geri Al</button>
+        <br />
+        <label>Geç Gelen Gün Sayısı</label>
+        <input type="text" class="form-control" id="Gecinput" value="@ViewBag.dgr" /> @*Controller kısmında viewbag komutunu viewse yansıtmak için kullanılır.*@
     </div>
-   }
+    <br />
+
+        <div>
+            <button class="btn btn-warning">Ödünç Kitabı Geri Al</button>
+        </div>
+        }
 

@@ -266,6 +266,13 @@
     <Content Include="web2\resimler\book5.jpg" />
     <Content Include="web2\resimler\img1.jpg" />
     <Content Include="web2\w3layouts-License.txt" />
+    <Content Include="webhava\css\style.css" />
+    <Content Include="webhava\images\bg.jpg" />
+    <Content Include="webhava\images\img1.jpg" />
+    <Content Include="webhava\index.html" />
+    <Content Include="webhava\js\jquery-2.1.4.min.js" />
+    <Content Include="webhava\js\skycons.js" />
+    <Content Include="webhava\w3layouts-License.txt" />
     <Content Include="web\.gitignore" />
     <Content Include="web\css\freelancer.css" />
     <Content Include="web\css\freelancer.min.css" />
@@ -407,6 +414,9 @@
     <Content Include="web\vendor\jquery\jquery.min.map" />
     <Content Include="web\vendor\jquery\jquery.slim.min.map" />
     <Content Include="Views\Statistics\Index.cshtml" />
+    <Content Include="Views\Statistics\Weather.cshtml" />
+    <Content Include="Views\Statistics\WeatherCard.cshtml" />
+    <Content Include="Views\Statistics\Gallery.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

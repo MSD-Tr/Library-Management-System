@@ -8,11 +8,13 @@
     <div style="margin-top:15px">
         <label>Yazar Adı</label>
         @Html.TextBoxFor(y => y.NAME, new { @class = "form-control" })
+        @Html.ValidationMessageFor(y => y.NAME)
 
     </div>
     <div style="margin-top:15px">
         <label>Yazar Soyadı</label>
         @Html.TextBoxFor(y => y.SURNAME, new { @class = "form-control" })
+        @Html.ValidationMessageFor(y=>y.SURNAME)
     </div>
     <div style="margin-top:15px">
         <label>Yazar Detay</label>
@@ -22,7 +24,7 @@
 
     <div style="margin-top:15px">
         <button class="btn btn-info">yeni yazar ekle</button>
-       
+
     </div>
 
 </form>

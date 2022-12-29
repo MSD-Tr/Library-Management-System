@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
 using Library_Management_System.Models.Entity;
@@ -28,9 +29,15 @@ namespace Library_Management_System.Controllers
             db.SaveChanges();
             return View();
         }
-        public ActionResult EntrustReturn(int id)// ödünç iade al kısmı
+        public ActionResult EntrustReturn(Movement m)// ödünç iade al kısmı
         {
-            var odn = db.Movement.Find(id);
+            var odn = db.Movement.Find(m.Id);
+            DateTime d1 = DateTime.Parse(odn.FinishDate.ToString());
+
+            //Controller tarafından viewse değer taşımak için kullanılır.
+            DateTime d2 = Convert.ToDateTime(DateTime.Now.ToShortDateString());
+            TimeSpan d3 = d2 - d1;
+            ViewBag.dgr = d3.TotalDays;
             return View("EntrustReturn", odn);
         }
         public ActionResult EntrustUpdate(Movement p)
