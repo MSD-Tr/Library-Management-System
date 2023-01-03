@@ -14,13 +14,10 @@
         <th>Üye Id</th>
         <th>Üye Adı</th>
         <th>Üye Soyadı</th>
-        <th>Mail</th>
-        <th>Kullanıcı Adı</th>
-        <th>Şifre</th>
-        <th>Telefon</th>
         <th>Okul</th>
         <th>Sil</th>
         <th>Güncelle</th>
+        <th>Üye Kitap Geçmişi</th>
     </tr>
 
     @foreach (var y in Model)
@@ -29,14 +26,11 @@
             <td>@y.Id</td>
             <td>@y.Name</td>
             <td>@y.Surname</td>
-            <td>@y.Mail</td>
-            <td>@y.UserName</td>
-            <td>@y.Password</td>
-            <td>@y.PhoneNumber</td>
             <td>@y.School</td>
             <td>@Html.ActionLink("Delete", "MembersDelete", new { Id = y.Id }, new { @class = "btn btn-danger", onclick = "return confirm('Silmek istiyormusunuz')" })</td>
 
             <td><a href="/Members/MembersBring/@y.Id" class="btn btn-success">Güncelle</a></td>
+            <td><a href="/Members/MembersBookPast/@y.Id" class="btn btn-default " style="background-color:cadetblue">Üye Kitap Geçmişi</a></td>
         </tr>
     }
 </table>

@@ -1,0 +1,27 @@
+﻿@using Library_Management_System.Models.Entity;
+@model List<Movement>
+@{
+    ViewBag.Title = "MembersBookPast";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2> @ViewBag.memberbooks Kitap Geçmişi</h2>
+<br />
+<table class="table table-striped">
+    <tr>
+        <th>Kitap Adı</th>
+        <th>Personel</th>
+        <th>Alış Tarihi</th>
+        <th>İade Tarihi</th>
+    </tr>
+    @foreach (var x in Model)
+    {
+        <tr>
+            <td>@x.Book.Name</td>
+            <td>@x.Empyloyees.Employee</td>
+            <td>@Convert.ToDateTime(x.StartDate).ToString("dd/MM/yyyy")</td>
+            <td>@Convert.ToDateTime(x.MemberBringDate).ToString("dd/MM/yyyy")</td>
+        </tr>
+    }
+</table>
+

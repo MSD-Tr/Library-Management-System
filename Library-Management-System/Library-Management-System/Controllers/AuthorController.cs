@@ -10,7 +10,7 @@ namespace Library_Management_System.Controllers
     public class AuthorController : Controller
     {
         devrimme_nurEntities db = new devrimme_nurEntities();
-        
+
         // GET: Author
         public ActionResult Index()
         {
@@ -35,7 +35,7 @@ namespace Library_Management_System.Controllers
         }
         public ActionResult AuthorDelete(int id)
         {
-            var author=db.Author.Find(id);
+            var author = db.Author.Find(id);
             db.Author.Remove(author);
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -43,7 +43,7 @@ namespace Library_Management_System.Controllers
         public ActionResult AuthorBring(int id)
         {
             var author = db.Author.Find(id);
-            return View("AuthorBring",author);
+            return View("AuthorBring", author);
         }
         public ActionResult AuthorUpdate(Author P)
         {
@@ -53,6 +53,13 @@ namespace Library_Management_System.Controllers
             author.DETAILS = P.DETAILS;
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+        public ActionResult AuthorBook(int id)
+        {
+            var author = db.Book.Where(x => x.Author_Id == id).ToList();
+            var authorname = db.Author.Where(x => x.ID == id).Select(z => z.NAME + " " + z.SURNAME).FirstOrDefault();
+            ViewBag.name = authorname;
+            return View(author);
         }
     }
 }

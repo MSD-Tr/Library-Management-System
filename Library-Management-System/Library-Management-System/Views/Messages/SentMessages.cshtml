@@ -1,0 +1,31 @@
+﻿@using Library_Management_System.Models.Entity;
+@model List<Messages>
+@{
+    ViewBag.Title = "SentMessages";
+    Layout = "~/Views/Shared/Panel.cshtml";
+}
+
+<h2>Gönderilen Mesajlar</h2>
+<br />
+<table class="table table-bordered">
+    <tr>
+        <th>Alıcı</th>
+        <th>Konu</th>
+        <th>Mesaj</th>
+        <th>Tarih</th>
+    </tr>
+    @foreach (var x in Model)
+    {
+        <tr>
+            <td>@x.Buyer</td>
+            <td>@x.Subject</td>
+            <td>@x.Contents</td>
+            <td>@x.Date</td>
+        </tr>
+
+
+    }
+
+</table>
+
+

@@ -18,8 +18,15 @@ namespace Library_Management_System.Controllers
             return View(degerler);
         }
         [HttpGet]
-        public ActionResult Entrustt()
+        public ActionResult Entrustt()//ödünç verme kısmı.
         {
+            List<SelectListItem> deger1 = (from x in db.Members.ToList()
+                                           select new SelectListItem
+                                           {
+                                               Text = x.Name +" " + x.Surname,
+                                               Value = x.Id.ToString()
+                                           }).ToList();
+            ViewBag.dgr = deger1;
             return View();
         }
         [HttpPost]
@@ -37,6 +44,7 @@ namespace Library_Management_System.Controllers
             //Controller tarafından viewse değer taşımak için kullanılır.
             DateTime d2 = Convert.ToDateTime(DateTime.Now.ToShortDateString());
             TimeSpan d3 = d2 - d1;
+
             ViewBag.dgr = d3.TotalDays;
             return View("EntrustReturn", odn);
         }
@@ -45,6 +53,7 @@ namespace Library_Management_System.Controllers
             var odn = db.Movement.Find(p.Id);
             odn.MemberBringDate = p.MemberBringDate;//üyenin getirdiği tarih
             odn.MovementStatus = true;
+            odn.MemberBringDate = DateTime.Now;
             db.SaveChanges();
             return RedirectToAction("Index");
 

@@ -51,6 +51,7 @@
           </Key>
           <Property Name="Id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="30" />
+          <Property Name="Status" Type="bit" />
         </EntityType>
         <EntityType Name="Contact">
           <Key>
@@ -82,6 +83,17 @@
           <Property Name="Password" Type="varchar" MaxLength="50" />
           <Property Name="PhoneNumber" Type="varchar" MaxLength="50" />
           <Property Name="School" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Messages">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Sender" Type="varchar" MaxLength="50" />
+          <Property Name="Buyer" Type="varchar" MaxLength="50" />
+          <Property Name="Subject" Type="varchar" MaxLength="50" />
+          <Property Name="Contents" Type="varchar" MaxLength="50" />
+          <Property Name="Date" Type="smalldatetime" />
         </EntityType>
         <EntityType Name="Movement">
           <Key>
@@ -187,18 +199,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Punishment_Movement1">
-          <End Role="Movement" Type="Self.Movement" Multiplicity="0..1" />
-          <End Role="Punishment" Type="Self.Punishment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Movement">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Punishment">
-              <PropertyRef Name="Movement_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -230,6 +230,7 @@
           <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="MaxBookAuthor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="devrimme_usernur" />
         <EntityContainer Name="devrimme_nurModelStoreContainer">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="About" EntityType="Self.About" Schema="devrimme_usernur" store:Type="Tables" />
@@ -239,6 +240,7 @@
           <EntitySet Name="Contact" EntityType="Self.Contact" Schema="devrimme_usernur" store:Type="Tables" />
           <EntitySet Name="Empyloyees" EntityType="Self.Empyloyees" Schema="devrimme_usernur" store:Type="Tables" />
           <EntitySet Name="Members" EntityType="Self.Members" Schema="devrimme_usernur" store:Type="Tables" />
+          <EntitySet Name="Messages" EntityType="Self.Messages" Schema="devrimme_usernur" store:Type="Tables" />
           <EntitySet Name="Movement" EntityType="Self.Movement" Schema="devrimme_usernur" store:Type="Tables" />
           <EntitySet Name="Punishment" EntityType="Self.Punishment" Schema="devrimme_usernur" store:Type="Tables" />
           <EntitySet Name="Tıll" EntityType="Self.Tıll" Schema="devrimme_usernur" store:Type="Tables" />
@@ -266,252 +268,12 @@
             <End Role="Members" EntitySet="Members" />
             <End Role="Punishment" EntitySet="Punishment" />
           </AssociationSet>
-          <AssociationSet Name="FK_Punishment_Movement1" Association="Self.FK_Punishment_Movement1">
-            <End Role="Movement" EntitySet="Movement" />
-            <End Role="Punishment" EntitySet="Punishment" />
-          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="devrimme_nurModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
-        <EntityType Name="About">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Explanation" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="Author">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="SURNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="DETAILS" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Book" Relationship="Self.FK_Book_Author" FromRole="Author" ToRole="Book" />
-        </EntityType>
-        <EntityType Name="Book">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Categories_Id" Type="Byte" />
-          <Property Name="Author_Id" Type="Int32" />
-          <Property Name="PrıntıngYear" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
-          <Property Name="Publısher" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="PagesNumber" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Name="Status" Type="Boolean" />
-          <Property Name="Picture" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Author" Relationship="Self.FK_Book_Author" FromRole="Book" ToRole="Author" />
-          <NavigationProperty Name="Categories" Relationship="Self.FK_Book_Categories" FromRole="Book" ToRole="Categories" />
-          <NavigationProperty Name="Movement" Relationship="Self.FK_Movement_Book" FromRole="Book" ToRole="Movement" />
-        </EntityType>
-        <EntityType Name="Categories">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Book" Relationship="Self.FK_Book_Categories" FromRole="Categories" ToRole="Book" />
-        </EntityType>
-        <EntityType Name="Empyloyees">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Employee" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Movement" Relationship="Self.FK_Movement_Empyloyees1" FromRole="Empyloyees" ToRole="Movement" />
-        </EntityType>
-        <EntityType Name="Members">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Photography" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="School" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Movement" Relationship="Self.FK_Movement_Members1" FromRole="Members" ToRole="Movement" />
-          <NavigationProperty Name="Punishment" Relationship="Self.FK_Punishment_Members" FromRole="Members" ToRole="Punishment" />
-        </EntityType>
-        <EntityType Name="Movement">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Employee_Id" Type="Int32" />
-          <Property Name="Book_Id" Type="Int32" />
-          <Property Name="Member_ıd" Type="Int32" />
-          <Property Name="StartDate" Type="DateTime" Precision="0" />
-          <Property Name="FinishDate" Type="DateTime" Precision="0" />
-          <Property Name="MemberBringDate" Type="DateTime" Precision="0" />
-          <Property Name="MovementStatus" Type="Boolean" />
-          <NavigationProperty Name="Book" Relationship="Self.FK_Movement_Book" FromRole="Movement" ToRole="Book" />
-          <NavigationProperty Name="Empyloyees" Relationship="Self.FK_Movement_Empyloyees1" FromRole="Movement" ToRole="Empyloyees" />
-          <NavigationProperty Name="Members" Relationship="Self.FK_Movement_Members1" FromRole="Movement" ToRole="Members" />
-          <NavigationProperty Name="Punishment" Relationship="Self.FK_Punishment_Movement1" FromRole="Movement" ToRole="Punishment" />
-        </EntityType>
-        <EntityType Name="Punishment">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Members_Id" Type="Int32" />
-          <Property Name="StartDate" Type="DateTime" Precision="0" />
-          <Property Name="FinishDate" Type="DateTime" Precision="0" />
-          <Property Name="Money" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="Movement_Id" Type="Int32" />
-          <NavigationProperty Name="Members" Relationship="Self.FK_Punishment_Members" FromRole="Punishment" ToRole="Members" />
-          <NavigationProperty Name="Movement" Relationship="Self.FK_Punishment_Movement1" FromRole="Punishment" ToRole="Movement" />
-        </EntityType>
-        <EntityType Name="Tıll">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Moon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Amount" Type="Decimal" Precision="18" Scale="0" />
-        </EntityType>
-        <Association Name="FK_Book_Author">
-          <End Role="Author" Type="Self.Author" Multiplicity="0..1" />
-          <End Role="Book" Type="Self.Book" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Author">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Book">
-              <PropertyRef Name="Author_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Book_Categories">
-          <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
-          <End Role="Book" Type="Self.Book" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Categories">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Book">
-              <PropertyRef Name="Categories_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Movement_Book">
-          <End Role="Book" Type="Self.Book" Multiplicity="0..1" />
-          <End Role="Movement" Type="Self.Movement" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Book">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Movement">
-              <PropertyRef Name="Book_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Movement_Empyloyees1">
-          <End Role="Empyloyees" Type="Self.Empyloyees" Multiplicity="0..1" />
-          <End Role="Movement" Type="Self.Movement" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Empyloyees">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Movement">
-              <PropertyRef Name="Employee_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Movement_Members1">
-          <End Role="Members" Type="Self.Members" Multiplicity="0..1" />
-          <End Role="Movement" Type="Self.Movement" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Members">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Movement">
-              <PropertyRef Name="Member_ıd" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Punishment_Members">
-          <End Role="Members" Type="Self.Members" Multiplicity="0..1" />
-          <End Role="Punishment" Type="Self.Punishment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Members">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Punishment">
-              <PropertyRef Name="Members_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Punishment_Movement1">
-          <End Role="Movement" Type="Self.Movement" Multiplicity="0..1" />
-          <End Role="Punishment" Type="Self.Punishment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Movement">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Punishment">
-              <PropertyRef Name="Movement_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="devrimme_nurEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <EntitySet Name="About" EntityType="Self.About" />
-          <EntitySet Name="Author" EntityType="Self.Author" />
-          <EntitySet Name="Book" EntityType="Self.Book" />
-          <EntitySet Name="Categories" EntityType="Self.Categories" />
-          <EntitySet Name="Empyloyees" EntityType="Self.Empyloyees" />
-          <EntitySet Name="Members" EntityType="Self.Members" />
-          <EntitySet Name="Movement" EntityType="Self.Movement" />
-          <EntitySet Name="Punishment" EntityType="Self.Punishment" />
-          <EntitySet Name="Tıll" EntityType="Self.Tıll" />
-          <AssociationSet Name="FK_Book_Author" Association="Self.FK_Book_Author">
-            <End Role="Author" EntitySet="Author" />
-            <End Role="Book" EntitySet="Book" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Book_Categories" Association="Self.FK_Book_Categories">
-            <End Role="Categories" EntitySet="Categories" />
-            <End Role="Book" EntitySet="Book" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Movement_Book" Association="Self.FK_Movement_Book">
-            <End Role="Book" EntitySet="Book" />
-            <End Role="Movement" EntitySet="Movement" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Movement_Empyloyees1" Association="Self.FK_Movement_Empyloyees1">
-            <End Role="Empyloyees" EntitySet="Empyloyees" />
-            <End Role="Movement" EntitySet="Movement" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Movement_Members1" Association="Self.FK_Movement_Members1">
-            <End Role="Members" EntitySet="Members" />
-            <End Role="Movement" EntitySet="Movement" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Punishment_Members" Association="Self.FK_Punishment_Members">
-            <End Role="Members" EntitySet="Members" />
-            <End Role="Punishment" EntitySet="Punishment" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Punishment_Movement1" Association="Self.FK_Punishment_Movement1">
-            <End Role="Movement" EntitySet="Movement" />
-            <End Role="Punishment" EntitySet="Punishment" />
-          </AssociationSet>
           <FunctionImport Name="sp_alterdiagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
@@ -542,8 +304,44 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="MaxBookAuthor" ReturnType="Collection(String)" />
+          <EntitySet Name="Messages" EntityType="devrimme_nurModel.Messages" />
+          <EntitySet Name="sysdiagrams" EntityType="devrimme_nurModel.sysdiagrams" />
+          <EntitySet Name="About" EntityType="devrimme_nurModel.About" />
+          <EntitySet Name="Author" EntityType="devrimme_nurModel.Author" />
+          <EntitySet Name="Book" EntityType="devrimme_nurModel.Book" />
+          <EntitySet Name="Categories" EntityType="devrimme_nurModel.Categories" />
           <EntitySet Name="Contact" EntityType="devrimme_nurModel.Contact" />
-        </EntityContainer>
+          <EntitySet Name="Empyloyees" EntityType="devrimme_nurModel.Empyloyees" />
+          <EntitySet Name="Members" EntityType="devrimme_nurModel.Members" />
+          <EntitySet Name="Movement" EntityType="devrimme_nurModel.Movement" />
+          <EntitySet Name="Punishment" EntityType="devrimme_nurModel.Punishment" />
+          <EntitySet Name="Tıll" EntityType="devrimme_nurModel.Tıll" />
+          <AssociationSet Name="FK_Book_Author" Association="devrimme_nurModel.FK_Book_Author">
+            <End Role="Author" EntitySet="Author" />
+            <End Role="Book" EntitySet="Book" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Book_Categories" Association="devrimme_nurModel.FK_Book_Categories">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Book" EntitySet="Book" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Movement_Book" Association="devrimme_nurModel.FK_Movement_Book">
+            <End Role="Book" EntitySet="Book" />
+            <End Role="Movement" EntitySet="Movement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Movement_Empyloyees1" Association="devrimme_nurModel.FK_Movement_Empyloyees1">
+            <End Role="Empyloyees" EntitySet="Empyloyees" />
+            <End Role="Movement" EntitySet="Movement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Movement_Members1" Association="devrimme_nurModel.FK_Movement_Members1">
+            <End Role="Members" EntitySet="Members" />
+            <End Role="Movement" EntitySet="Movement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Punishment_Members" Association="devrimme_nurModel.FK_Punishment_Members">
+            <End Role="Members" EntitySet="Members" />
+            <End Role="Punishment" EntitySet="Punishment" />
+          </AssociationSet>
+          </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
           <Property Type="Binary" Name="definition" Nullable="true" />
@@ -555,6 +353,70 @@
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
+        <EntityType Name="Messages">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Sender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Buyer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Subject" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Contents" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="About">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Explanation" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Author">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SURNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DETAILS" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Book" Relationship="devrimme_nurModel.FK_Book_Author" FromRole="Author" ToRole="Book" />
+        </EntityType>
+        <EntityType Name="Book">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Categories_Id" Type="Byte" />
+          <Property Name="Author_Id" Type="Int32" />
+          <Property Name="PrıntıngYear" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="Publısher" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PagesNumber" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Boolean" />
+          <Property Name="Picture" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Author" Relationship="devrimme_nurModel.FK_Book_Author" FromRole="Book" ToRole="Author" />
+          <NavigationProperty Name="Categories" Relationship="devrimme_nurModel.FK_Book_Categories" FromRole="Book" ToRole="Categories" />
+          <NavigationProperty Name="Movement" Relationship="devrimme_nurModel.FK_Movement_Book" FromRole="Book" ToRole="Movement" />
+        </EntityType>
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Book" Relationship="devrimme_nurModel.FK_Book_Categories" FromRole="Categories" ToRole="Book" />
+          <Property Name="Status" Type="Boolean" />
+        </EntityType>
         <EntityType Name="Contact">
           <Key>
             <PropertyRef Name="Id" />
@@ -565,122 +427,144 @@
           <Property Name="Subject" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Message" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
         </EntityType>
-      </Schema>
+        <EntityType Name="Empyloyees">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Employee" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Movement" Relationship="devrimme_nurModel.FK_Movement_Empyloyees1" FromRole="Empyloyees" ToRole="Movement" />
+        </EntityType>
+        <EntityType Name="Members">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Photography" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="School" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Movement" Relationship="devrimme_nurModel.FK_Movement_Members1" FromRole="Members" ToRole="Movement" />
+          <NavigationProperty Name="Punishment" Relationship="devrimme_nurModel.FK_Punishment_Members" FromRole="Members" ToRole="Punishment" />
+        </EntityType>
+        <EntityType Name="Movement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Employee_Id" Type="Int32" />
+          <Property Name="Book_Id" Type="Int32" />
+          <Property Name="Member_ıd" Type="Int32" />
+          <Property Name="StartDate" Type="DateTime" Precision="0" />
+          <Property Name="FinishDate" Type="DateTime" Precision="0" />
+          <Property Name="MemberBringDate" Type="DateTime" Precision="0" />
+          <Property Name="MovementStatus" Type="Boolean" />
+          <NavigationProperty Name="Book" Relationship="devrimme_nurModel.FK_Movement_Book" FromRole="Movement" ToRole="Book" />
+          <NavigationProperty Name="Empyloyees" Relationship="devrimme_nurModel.FK_Movement_Empyloyees1" FromRole="Movement" ToRole="Empyloyees" />
+          <NavigationProperty Name="Members" Relationship="devrimme_nurModel.FK_Movement_Members1" FromRole="Movement" ToRole="Members" />
+        </EntityType>
+        <EntityType Name="Punishment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Members_Id" Type="Int32" />
+          <Property Name="StartDate" Type="DateTime" Precision="0" />
+          <Property Name="FinishDate" Type="DateTime" Precision="0" />
+          <Property Name="Money" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Movement_Id" Type="Int32" />
+          <NavigationProperty Name="Members" Relationship="devrimme_nurModel.FK_Punishment_Members" FromRole="Punishment" ToRole="Members" />
+        </EntityType>
+        <EntityType Name="Tıll">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Moon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Amount" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <Association Name="FK_Book_Author">
+          <End Type="devrimme_nurModel.Author" Role="Author" Multiplicity="0..1" />
+          <End Type="devrimme_nurModel.Book" Role="Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Author">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="Author_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Book_Categories">
+          <End Type="devrimme_nurModel.Categories" Role="Categories" Multiplicity="0..1" />
+          <End Type="devrimme_nurModel.Book" Role="Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="Categories_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Movement_Book">
+          <End Type="devrimme_nurModel.Book" Role="Book" Multiplicity="0..1" />
+          <End Type="devrimme_nurModel.Movement" Role="Movement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Movement">
+              <PropertyRef Name="Book_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Movement_Empyloyees1">
+          <End Type="devrimme_nurModel.Empyloyees" Role="Empyloyees" Multiplicity="0..1" />
+          <End Type="devrimme_nurModel.Movement" Role="Movement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empyloyees">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Movement">
+              <PropertyRef Name="Employee_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Movement_Members1">
+          <End Type="devrimme_nurModel.Members" Role="Members" Multiplicity="0..1" />
+          <End Type="devrimme_nurModel.Movement" Role="Movement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Members">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Movement">
+              <PropertyRef Name="Member_ıd" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Punishment_Members">
+          <End Type="devrimme_nurModel.Members" Role="Members" Multiplicity="0..1" />
+          <End Type="devrimme_nurModel.Punishment" Role="Punishment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Members">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Punishment">
+              <PropertyRef Name="Members_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="devrimme_nurModelStoreContainer" CdmEntityContainer="devrimme_nurEntities">
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="devrimme_nurModel.sysdiagrams">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="About">
-            <EntityTypeMapping TypeName="devrimme_nurModel.About">
-              <MappingFragment StoreEntitySet="About">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Explanation" ColumnName="Explanation" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Author">
-            <EntityTypeMapping TypeName="devrimme_nurModel.Author">
-              <MappingFragment StoreEntitySet="Author">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="NAME" ColumnName="NAME" />
-                <ScalarProperty Name="SURNAME" ColumnName="SURNAME" />
-                <ScalarProperty Name="DETAILS" ColumnName="DETAILS" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Book">
-            <EntityTypeMapping TypeName="devrimme_nurModel.Book">
-              <MappingFragment StoreEntitySet="Book">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Categories_Id" ColumnName="Categories_Id" />
-                <ScalarProperty Name="Author_Id" ColumnName="Author_Id" />
-                <ScalarProperty Name="PrıntıngYear" ColumnName="PrıntıngYear" />
-                <ScalarProperty Name="Publısher" ColumnName="Publısher" />
-                <ScalarProperty Name="PagesNumber" ColumnName="PagesNumber" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="Picture" ColumnName="Picture" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Categories">
-            <EntityTypeMapping TypeName="devrimme_nurModel.Categories">
-              <MappingFragment StoreEntitySet="Categories">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Empyloyees">
-            <EntityTypeMapping TypeName="devrimme_nurModel.Empyloyees">
-              <MappingFragment StoreEntitySet="Empyloyees">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Employee" ColumnName="Employee" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Members">
-            <EntityTypeMapping TypeName="devrimme_nurModel.Members">
-              <MappingFragment StoreEntitySet="Members">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Surname" ColumnName="Surname" />
-                <ScalarProperty Name="Mail" ColumnName="Mail" />
-                <ScalarProperty Name="Photography" ColumnName="Photography" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="School" ColumnName="School" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Movement">
-            <EntityTypeMapping TypeName="devrimme_nurModel.Movement">
-              <MappingFragment StoreEntitySet="Movement">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Employee_Id" ColumnName="Employee_Id" />
-                <ScalarProperty Name="Book_Id" ColumnName="Book_Id" />
-                <ScalarProperty Name="Member_ıd" ColumnName="Member_ıd" />
-                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-                <ScalarProperty Name="FinishDate" ColumnName="FinishDate" />
-                <ScalarProperty Name="MemberBringDate" ColumnName="MemberBringDate" />
-                <ScalarProperty Name="MovementStatus" ColumnName="MovementStatus" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Punishment">
-            <EntityTypeMapping TypeName="devrimme_nurModel.Punishment">
-              <MappingFragment StoreEntitySet="Punishment">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Members_Id" ColumnName="Members_Id" />
-                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-                <ScalarProperty Name="FinishDate" ColumnName="FinishDate" />
-                <ScalarProperty Name="Money" ColumnName="Money" />
-                <ScalarProperty Name="Movement_Id" ColumnName="Movement_Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Tıll">
-            <EntityTypeMapping TypeName="devrimme_nurModel.Tıll">
-              <MappingFragment StoreEntitySet="Tıll">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Moon" ColumnName="Moon" />
-                <ScalarProperty Name="Amount" ColumnName="Amount" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="devrimme_nurModel.Store.sp_alterdiagram" />
           <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="devrimme_nurModel.Store.sp_creatediagram" />
           <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="devrimme_nurModel.Store.sp_dropdiagram" />
@@ -705,6 +589,72 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="devrimme_nurModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="devrimme_nurModel.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="MaxBookAuthor" FunctionName="devrimme_nurModel.Store.MaxBookAuthor" />
+          <EntitySetMapping Name="Messages">
+            <EntityTypeMapping TypeName="devrimme_nurModel.Messages">
+              <MappingFragment StoreEntitySet="Messages">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Contents" ColumnName="Contents" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Buyer" ColumnName="Buyer" />
+                <ScalarProperty Name="Sender" ColumnName="Sender" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="devrimme_nurModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="About">
+            <EntityTypeMapping TypeName="devrimme_nurModel.About">
+              <MappingFragment StoreEntitySet="About">
+                <ScalarProperty Name="Explanation" ColumnName="Explanation" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Author">
+            <EntityTypeMapping TypeName="devrimme_nurModel.Author">
+              <MappingFragment StoreEntitySet="Author">
+                <ScalarProperty Name="DETAILS" ColumnName="DETAILS" />
+                <ScalarProperty Name="SURNAME" ColumnName="SURNAME" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Book">
+            <EntityTypeMapping TypeName="devrimme_nurModel.Book">
+              <MappingFragment StoreEntitySet="Book">
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="PagesNumber" ColumnName="PagesNumber" />
+                <ScalarProperty Name="Publısher" ColumnName="Publısher" />
+                <ScalarProperty Name="PrıntıngYear" ColumnName="PrıntıngYear" />
+                <ScalarProperty Name="Author_Id" ColumnName="Author_Id" />
+                <ScalarProperty Name="Categories_Id" ColumnName="Categories_Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="devrimme_nurModel.Categories">
+              <MappingFragment StoreEntitySet="Categories">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Contact">
             <EntityTypeMapping TypeName="devrimme_nurModel.Contact">
               <MappingFragment StoreEntitySet="Contact">
@@ -716,7 +666,65 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          <EntitySetMapping Name="Empyloyees">
+            <EntityTypeMapping TypeName="devrimme_nurModel.Empyloyees">
+              <MappingFragment StoreEntitySet="Empyloyees">
+                <ScalarProperty Name="Employee" ColumnName="Employee" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Members">
+            <EntityTypeMapping TypeName="devrimme_nurModel.Members">
+              <MappingFragment StoreEntitySet="Members">
+                <ScalarProperty Name="School" ColumnName="School" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Photography" ColumnName="Photography" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Movement">
+            <EntityTypeMapping TypeName="devrimme_nurModel.Movement">
+              <MappingFragment StoreEntitySet="Movement">
+                <ScalarProperty Name="MovementStatus" ColumnName="MovementStatus" />
+                <ScalarProperty Name="MemberBringDate" ColumnName="MemberBringDate" />
+                <ScalarProperty Name="FinishDate" ColumnName="FinishDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="Member_ıd" ColumnName="Member_ıd" />
+                <ScalarProperty Name="Book_Id" ColumnName="Book_Id" />
+                <ScalarProperty Name="Employee_Id" ColumnName="Employee_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Punishment">
+            <EntityTypeMapping TypeName="devrimme_nurModel.Punishment">
+              <MappingFragment StoreEntitySet="Punishment">
+                <ScalarProperty Name="Movement_Id" ColumnName="Movement_Id" />
+                <ScalarProperty Name="Money" ColumnName="Money" />
+                <ScalarProperty Name="FinishDate" ColumnName="FinishDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="Members_Id" ColumnName="Members_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tıll">
+            <EntityTypeMapping TypeName="devrimme_nurModel.Tıll">
+              <MappingFragment StoreEntitySet="Tıll">
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Moon" ColumnName="Moon" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

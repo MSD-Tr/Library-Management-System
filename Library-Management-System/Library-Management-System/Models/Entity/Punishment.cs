@@ -22,6 +22,5 @@ namespace Library_Management_System.Models.Entity
         public Nullable<int> Movement_Id { get; set; }
     
         public virtual Members Members { get; set; }
-        public virtual Movement Movement { get; set; }
     }
 }

@@ -9,7 +9,7 @@
     <div></div>
     <div style="margin-top:15px">
         <label>Üye ID</label>
-        @Html.TextBoxFor(k => k.Member_ıd, new { @class = "form-control" })
+        @Html.DropDownListFor(k => k.Members.Id, (List<SelectListItem>)ViewBag.dgr,new {@class="form-control"})
     </div>
     <div style="margin-top:15px">
         <label>Kitap ID</label>
@@ -29,8 +29,8 @@
         <input type="text" class="form-control" name="FinishDate" value=" @DateTime.Now.AddDays(7).ToShortDateString() " /> @*@şuanın tarihinden 7 gün sonrayı göster demek.@*@
     </div>
     <div style="margin-top:15px">
-        <button class="btn btn-group" style="background-color:#086d41;color:white">Kitabı Ödünç Ver</button> 
+        <button class="btn btn-group" style="background-color:#086d41;color:white">Kitabı Ödünç Ver</button>
         <input type="hidden" value="False" name="MovementStatus" />
     </div>
-   
+
 </form>

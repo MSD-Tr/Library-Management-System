@@ -11,8 +11,7 @@ namespace Library_Management_System.Models.Entity
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Author
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,14 +19,12 @@ namespace Library_Management_System.Models.Entity
         {
             this.Book = new HashSet<Book>();
         }
-
+    
         public int ID { get; set; }
-         [Required(ErrorMessage = "Yazar Adı Boş Geçilemez")]
         public string NAME { get; set; }
-        [StringLength(20,ErrorMessage =("Soyad 30 Karakterden Fazla Olamaz."))]
         public string SURNAME { get; set; }
         public string DETAILS { get; set; }
-
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Book> Book { get; set; }
     }

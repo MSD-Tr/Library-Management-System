@@ -14,12 +14,6 @@ namespace Library_Management_System.Models.Entity
     
     public partial class Movement
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Movement()
-        {
-            this.Punishment = new HashSet<Punishment>();
-        }
-    
         public int Id { get; set; }
         public Nullable<int> Employee_Id { get; set; }
         public Nullable<int> Book_Id { get; set; }
@@ -32,7 +26,5 @@ namespace Library_Management_System.Models.Entity
         public virtual Book Book { get; set; }
         public virtual Empyloyees Empyloyees { get; set; }
         public virtual Members Members { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Punishment> Punishment { get; set; }
     }
 }

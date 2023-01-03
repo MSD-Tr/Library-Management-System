@@ -1,0 +1,28 @@
+﻿@model Library_Management_System.Models.Entity.Messages
+
+@{
+    ViewBag.Title = "NewMessages";
+    Layout = "~/Views/Shared/Panel.cshtml";
+}
+
+<h2>Yeni Mesaj</h2>
+<form class="form-group" method="post">
+    <div></div>
+    <div style="margin-top:15px">
+        <label>Alıcı Mail</label>
+        @Html.TextBoxFor(x => x.Buyer, new { @class = "form-control" })
+    </div>
+    <div style="margin-top:15px">
+        <label>Konu</label>
+        @Html.TextBoxFor(x => x.Contents, new { @class = "form-control" })
+    </div>
+    <div style="margin-top:15px">
+        <label>Mesaj</label>
+        @Html.TextAreaFor(x => x.Subject, new { @class = "form-control" })
+    </div>
+
+    <div style="margin-top:15px">
+        <button class="btn btn-info">Gönder</button>
+    </div>
+</form>
+

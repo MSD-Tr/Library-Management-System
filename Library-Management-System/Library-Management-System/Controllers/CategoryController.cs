@@ -13,7 +13,7 @@ namespace Library_Management_System.Controllers
         // GET: Category
         public ActionResult Index()
         {
-            var degerler = db.Categories.ToList();
+            var degerler = db.Categories.Where(x => x.Status == true).ToList();//VAR OLAN KİTAP KATEGORİLERİNDE DURUMU TRUE OLANLARI LİSTELER.
             return View(degerler);
         }
         [HttpGet]
@@ -31,10 +31,11 @@ namespace Library_Management_System.Controllers
         }
         public ActionResult CategoryDelete(int id)
         {
-           var category = db.Categories.Find(id);
-           db.Categories.Remove(category);
+            var category = db.Categories.Find(id);
+            //db.Categories.Remove(category);
+            category.Status = false;
             db.SaveChanges();
-           return RedirectToAction("Index");
+            return RedirectToAction("Index");
         }
         public ActionResult CategoryBring(int id)
         {

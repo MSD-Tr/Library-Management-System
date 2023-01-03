@@ -27,17 +27,18 @@ namespace Library_Management_System.Models.Entity
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Messages> Messages { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<About> About { get; set; }
         public virtual DbSet<Author> Author { get; set; }
         public virtual DbSet<Book> Book { get; set; }
         public virtual DbSet<Categories> Categories { get; set; }
+        public virtual DbSet<Contact> Contact { get; set; }
         public virtual DbSet<Empyloyees> Empyloyees { get; set; }
         public virtual DbSet<Members> Members { get; set; }
         public virtual DbSet<Movement> Movement { get; set; }
         public virtual DbSet<Punishment> Punishment { get; set; }
         public virtual DbSet<Tıll> Tıll { get; set; }
-        public virtual DbSet<Contact> Contact { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
@@ -140,6 +141,11 @@ namespace Library_Management_System.Models.Entity
         public virtual int sp_upgraddiagrams()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
+        }
+    
+        public virtual ObjectResult<string> MaxBookAuthor()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("MaxBookAuthor");
         }
     }
 }

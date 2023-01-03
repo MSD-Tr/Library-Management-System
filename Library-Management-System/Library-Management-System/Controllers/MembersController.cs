@@ -66,6 +66,14 @@ namespace Library_Management_System.Controllers
             return RedirectToAction("Index");
 
         }
+        public ActionResult MembersBookPast(int id)
+        {
+            var past = db.Movement.Where(x => x.Member_ıd == id).ToList();
+            var memberbook = db.Members.Where(x => x.Id == id).Select(z => z.Name + " " + z.Surname).FirstOrDefault();
+            ViewBag.memberbooks = memberbook;
+            return View(past);
+
+        }
 
     }
 }

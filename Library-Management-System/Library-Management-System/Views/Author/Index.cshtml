@@ -12,9 +12,9 @@
         <th>Id</th>
         <th>Ad</th>
         <th>Soyad</th>
-        <th>Detay</th>
         <th>Sil</th>
         <th>Güncelle</th>
+        <th>Yazar Kitapları</th>
 
     </tr>
     @foreach (var y in Model)
@@ -23,9 +23,10 @@
             <td>@y.ID</td>
             <td>@y.NAME</td>
             <td>@y.SURNAME</td>
-            <td>@y.DETAILS</td>
             <td>@Html.ActionLink("Sil", "AuthorDelete", new { Id = y.ID }, new { @class = "btn btn-danger", onclick = "return confirm('Silmek istiyormusunuz')" })</td>
-            <td><a href="/Author/AuthorBring/@y.ID" class="btn btn-success">Güncelle</a></td>
+
+            <td><a href="/Author/AuthorBring/@y.ID" class="btn btn-warning">Güncelle</a></td>
+            <td><a href="/Author/AuthorBook/@y.ID" class="btn btn-default" style="background-color:burlywood; color:chocolate">Yazar Kitapları</a></td>
         </tr>
     }
 
