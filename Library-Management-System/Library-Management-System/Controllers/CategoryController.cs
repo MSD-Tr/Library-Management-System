@@ -22,7 +22,7 @@ namespace Library_Management_System.Controllers
         {
             return View();
         }
-        [HttpPost]//
+        [HttpPost]
         public ActionResult AddCategory(Category p ) //parametre tanımlanmasının sebebi kategori tablosundan alsın p ye atsın.
         {
             db.Category.Add(p);// kategori tablosuna eklesin kategoriye eklenen değerleri

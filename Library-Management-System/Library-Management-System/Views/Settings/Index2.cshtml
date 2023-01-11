@@ -4,42 +4,52 @@
     ViewBag.Title = "Index2";
     Layout = "~/Views/Shared/Layout.cshtml";
 }
+<head>
+    <title>Ayarlar</title>
+</head>
 
 <link rel="stylesheet" href="/AdminLTE-3.0.4/plugins/fontawesome-free/css/all.min.css">
 <script src="~/Scripts/jquery-3.4.1.js"></script>
 <script src="~/Scripts/bootstrap.min.js"></script>
 <br />
-<table class="table table-bordered">
-    <tr>
-        <th></th>
-        <th>Kullanıcı</th>
-        <th>Yetki</th>
-        <th>Sil</th>
-        <th>Düzenle</th>
-    </tr>
-    @foreach (var item in Model)//veritabanından kolonlara dair verileri ne kadar varsa getirir
-    {
-        <tr>
-            <td>@item.Id</td>
-            <td>@item.UserName</td>
-            <td>@item.Authority</td>
-            <td>
-                <a class="btn btn-danger btn-sm" href="/Settings/DeleteAdmin/@item.Id">
-                    <i class="fas fa-trash">
-                    </i>
-                    Sil
-                </a>
-            </td>
-            <td>
 
-                <a class="btn btn-info btn-sm" href="/Settings/UpdateAdmin/@item.Id">
-                    <i class="fas fa-pencil-alt">
-                    </i>
-                    Düzenle
-                </a>
-            </td>
+<table id="example"
+       class="table table-striped table-bordered dt-responsive nowrap table-hover"
+       style="width: 100%;">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Kullanıcı</th>
+            <th>Yetki</th>
+            <th>Sil</th>
+            <th>Düzenle</th>
         </tr>
-    }
+    </thead>
+    <tbody>
+        @foreach (var item in Model)//veritabanından kolonlara dair verileri ne kadar varsa getirir
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.UserName</td>
+                <td>@item.Authority</td>
+                <td>
+                    <a class="btn btn-danger btn-sm" href="/Settings/DeleteAdmin/@item.Id">
+                        <i class="fas fa-trash">
+                        </i>
+                        Sil
+                    </a>
+                </td>
+                <td>
+
+                    <a class="btn btn-info btn-sm" href="/Settings/UpdateAdmin/@item.Id">
+                        <i class="fas fa-pencil-alt">
+                        </i>
+                        Düzenle
+                    </a>
+                </td>
+            </tr>
+        }
+        </tbody>
 </table>
 <br />
 <button class="btn btn-primary" data-toggle="modal" data-target="#Modal1">Yeni Admin Ekle</button>
@@ -52,13 +62,13 @@
             <form method="post" action="/Settings/NewAdmin/">
                 <div class="modal-body">
                     <label>Kullanıcı Adı</label>
-                    <input type="text" name="UserName"class="form-control" />
-                           <br />
-                            <label>Şifre</label>
-                    <input type="text" name="Password"class="form-control" />
+                    <input type="text" name="UserName" class="form-control" />
                     <br />
-                            <label>Yetki</label>
-                    <input type="text" name="Authority"class="form-control" />
+                    <label>Şifre</label>
+                    <input type="text" name="Password" class="form-control" />
+                    <br />
+                    <label>Yetki</label>
+                    <input type="text" name="Authority" class="form-control" />
                     <br />
                     <button class="btn btn-info">
                         Kaydet

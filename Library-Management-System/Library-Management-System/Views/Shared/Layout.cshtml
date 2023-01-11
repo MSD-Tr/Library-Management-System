@@ -7,8 +7,19 @@
 <!DOCTYPE html>
 <html>
 <head>
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- #region Pdf Export -->
+    <link rel="stylesheet"
+          href="~/Scripts/Style/bootstrap.css" />
+    <link rel="stylesheet"
+          href="~/Scripts/Style/buttons.bootstrap4.min.css" />
+    <link rel="stylesheet"
+          href="~/Scripts/Style/dataTables.bootstrap4.min.css" />
+    <link rel="stylesheet"
+          href="~/Scripts/Style/responsive.bootstrap4.min.css" />
+    <!-- #endregion -->
 
     <style>
         body {
@@ -54,7 +65,7 @@
                 }
         }
     </style>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
@@ -92,6 +103,54 @@
         @RenderBody()
         @*sayfa içerisindeki değişen kısım*@
     </div>
+    <!-- #region Pdf Export  -->
 
+    <script src="~/Scripts/Js/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/Js/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/Js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/Scripts/Js/dataTables.buttons.min.js"></script>
+    <script src="~/Scripts/Js/buttons.bootstrap4.min.js"></script>
+    <script src="~/Scripts/Js/jszip.min.js"></script>
+    <script src="~/Scripts/Js/pdfmake.min.js"></script>
+    <script src="~/Scripts/Js/vfs_fonts.js"></script>
+    <script src="~/Scripts/Js/buttons.html5.min.js"></script>
+    <script src="~/Scripts/Js/buttons.print.min.js"></script>
+    <script src="~/Scripts/Js/buttons.colVis.min.js"></script>
+    <script src="~/Scripts/Js/dataTables.responsive.min.js"></script>
+    <script src="~/Scripts/Js/responsive.bootstrap4.min.js"></script>
+  
+    <script>
+
+        $(document).ready(function () {
+            $('#example').on('length.dt', function (e, settings, len) {
+                console.log('New page length: ' + len);
+                length
+            });
+            $('#example').DataTable({
+                dom: 'Bfrtiqlp',
+                lengthMenu: [7, 10, 25, 50],
+                buttons: [
+                    {
+                        extend: 'excelHtml5',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
+                        extend: 'pdfHtml5',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    'colvis'
+
+                ]
+            });
+
+        });
+
+    </script>
+
+    <!-- #endregion -->
 </body>
 </html>

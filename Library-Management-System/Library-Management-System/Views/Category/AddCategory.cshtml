@@ -3,8 +3,9 @@
     ViewBag.Title = "AddCategory";
     Layout = "~/Views/Shared/Layout.cshtml";
 }
-
-
+<head>
+    <title>Yeni Kategori Ekle</title>
+</head>
 <form class="form-group" method="post">
     <div></div>
     <div style="margin-top:15px">
@@ -12,9 +13,14 @@
     </div>
     <div>
         <label>Kategori Adı</label>
-        <input type="text" class="form-control" name="Name"/>
+        <input type="text" class="form-control" name="Name" />
     </div>
     <div style="margin-top:15px">
-        <button class="btn btn-info" id="Btn1">KategoriEkle</button>
+        <label>Durum</label>
+        @Html.TextBoxFor(y => y.Status, new { @class = "form-control" })
+        @Html.ValidationMessageFor(y => y.Status)
+    </div>
+    <div style="margin-top:15px">
+        <button class="btn btn-info" id="Btn1">KategoriEkle </button>
     </div>
 </form>

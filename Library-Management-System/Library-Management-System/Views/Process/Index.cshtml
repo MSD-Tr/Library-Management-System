@@ -4,29 +4,37 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/Layout.cshtml";
 }
-
+<head>
+    <title>İşlemler</title>
+</head>
 <h2>İadesi Alınan Kitap Listesi</h2>
 
-<table class="table table-bordered">
-    <tr>
-        <th>İşlem ID</th>
-        <th>Kitap Adı</th>
-        <th>Üye</th>
-        <th>Personel</th>
-        <th>Alış Tarihi</th>
-        <th>Üye İade Tarihi</th>
-        <th>Detaylar</th>
-    </tr>
-    @foreach (var k in Model)
-    {
+<table id="example"
+       class="table table-striped table-bordered dt-responsive nowrap table-hover"
+       style="width: 100%;">
+    <thead>
         <tr>
-            <td>@k.Id</td>
-            <td>@k.Book.Name</td>
-            <td>@k.Member.Name&nbsp @k.Member.Surname</td>
-            <td>@k.Employee.Employees</td>
-            <td>@Convert.ToDateTime(k.StartDate).ToString("dd/MM/yyyy")</td>
-            <td>@Convert.ToDateTime(k.BringMemberDate).ToString("dd/MM/yyyy")</td>
-            <td><a href="/Loaned/LoanReturn/@k.Id" class="btn btn-default" style="background-color:#f87cdf;color:white">Detaylar</a></td>
+            <th>İşlem ID</th>
+            <th>Kitap Adı</th>
+            <th>Üye</th>
+            <th>Personel</th>
+            <th>Alış Tarihi</th>
+            <th>Üye İade Tarihi</th>
+            <th>Detaylar</th>
         </tr>
-    }
+    </thead>
+    <tbody>
+        @foreach (var k in Model)
+        {
+            <tr>
+                <td>@k.Id</td>
+                <td>@k.Book.Name</td>
+                <td>@k.Member.Name&nbsp @k.Member.Surname</td>
+                <td>@k.Employee.Employees</td>
+                <td>@Convert.ToDateTime(k.StartDate).ToString("dd/MM/yyyy")</td>
+                <td>@Convert.ToDateTime(k.BringMemberDate).ToString("dd/MM/yyyy")</td>
+                <td><a href="/Loaned/LoanReturn/@k.Id" class="btn btn-default" style="background-color:#f87cdf;color:white">Detaylar</a></td>
+            </tr>
+        }
+    </tbody>
 </table>

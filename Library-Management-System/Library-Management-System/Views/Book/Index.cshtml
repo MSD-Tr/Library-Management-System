@@ -4,30 +4,30 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/Layout.cshtml";
 }
-
+<head>
+    <title>Kitaplar</title>
+</head>
 <h2>Kitap Sayfası</h2>
-@using (Html.BeginForm("Index", "Book", FormMethod.Get))
-{
-    <div style="margin-bottom:15px">
-        <b>Aranacak Kitap Adını Girin: &nbsp </b>
-        @Html.TextBox("p")
-        <input type="submit" value="Ara" />
-    </div>
-}
 
-<table class="table table-bordered">
-    <tr>
-        <th>ID</th>
-        <th>Kitap Adı</th>
-        <th>Kitap Yazarı</th>
-        <th>Kategorisi</th>
-        <th>Basım Yılı</th>
-        <th>Yayınevi</th>
-        <th>Sayfa</th>
-        <th>Durum</th>
-        <th>Sil</th>
-        <th>Güncelle</th>
-    </tr>
+
+
+<table id="example"
+       class="table table-striped table-bordered dt-responsive nowrap table-hover"
+       style="width: 100%;">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Kitap Adı</th>
+            <th>Kitap Yazarı</th>
+            <th>Kategorisi</th>
+            <th>Basım Yılı</th>
+            <th>Yayınevi</th>
+            <th>Sayfa</th>
+            <th>Durum</th>
+            <th>Sil</th>
+            <th>Güncelle</th>
+        </tr>
+    </thead><tbody>
     @foreach (var k in Model)
     {
         <tr>
@@ -44,5 +44,6 @@
 
         </tr>
     }
+    </tbody>
 </table>
 <a href="/Book/AddBook/" class="btn btn-primary">Yeni Kitap Ekle</a>

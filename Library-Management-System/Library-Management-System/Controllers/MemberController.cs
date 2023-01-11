@@ -4,8 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Library_Management_System.Models.Entity;
-using PagedList;
-using PagedList.Mvc;
+
 
 namespace Library_Management_System.Controllers
 {
@@ -13,10 +12,10 @@ namespace Library_Management_System.Controllers
     {
         devrimme_senaEntities db = new devrimme_senaEntities();
         // GET: Member
-        public ActionResult Index(int sayfa = 1)
+        public ActionResult Index()
         {
-            //var degerler = db.Member.ToList();
-            var degerler = db.Member.ToList().ToPagedList(sayfa, 3);
+            var degerler = db.Member.ToList();
+
             return View(degerler);
         }
         [HttpGet]
