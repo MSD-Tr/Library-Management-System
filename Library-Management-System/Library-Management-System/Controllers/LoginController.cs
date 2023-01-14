@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Library_Management_System.Models.Entity;
 using System.Web.Security;//bu kütüphane de yeni tanımlandı
+using Library_Management_System.Models.Dto;
 
 namespace Library_Management_System.Controllers
 {
@@ -16,6 +17,7 @@ namespace Library_Management_System.Controllers
        
         public ActionResult LogIn()
         {
+            
             return View();
         }
         [HttpPost]
@@ -31,7 +33,10 @@ namespace Library_Management_System.Controllers
             }
             else
             {
-                return View();
+
+                LoginDto loginDto = new LoginDto { IsSuccess = false };
+                return View(loginDto);
+               
             }
             
         }

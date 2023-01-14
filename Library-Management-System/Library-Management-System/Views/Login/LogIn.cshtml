@@ -1,4 +1,4 @@
-﻿
+﻿@model Library_Management_System.Models.Dto.LoginDto
 @{
     Layout = null;
 }
@@ -30,6 +30,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <link href="//fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
           rel="stylesheet">
     <!-- /google fonts-->
+    <script src="~/AdminLTE-3.0.4/docs/assets/plugins/jquery/jquery.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            debugger;
+           @{
+               if(Model!=null&&Model.IsSuccess==false)
+            {
+                <text>alert("Hatalı Giriş!");</text>
+            }
+            }
+            
+        });
+    </script>
 
 </head>
 
@@ -38,7 +51,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <h1>Kütüphane Giriş Paneli</h1>
     <div class=" w3l-login-form">
         <h2>Login</h2>
-        @using (Html.BeginForm("Login", "LogIn", FormMethod.Post))
+        @using (Html.BeginForm("LogIn", "Login", FormMethod.Post))
         {
             <div class=" w3l-form-group">
                 <label>Kullanıcı Adı:</label>
@@ -59,11 +72,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <p><input type="checkbox"> Beni Hatırla</p>
             </div>
             <button type="submit">Giriş Yap</button>
+
         }
         <p class=" w3l-register-p">Bir Hesabınız Yok mu?<a href="/Register/Record/" class="register"> Kayıt Ol</a></p>
-    
+
         <p class=" w3l-register-p">Personelmisiniz ?<a href="/AdminLogin/Login/" class="register"> Giriş Yap</a></p>
-     
+
 
         @* kayit ol controller da kayıt actionresult a gidecek. *@
     </div>

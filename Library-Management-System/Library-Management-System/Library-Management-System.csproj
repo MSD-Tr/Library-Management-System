@@ -157,6 +157,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Class1.cs" />
+    <Compile Include="Models\Dto\LoginDto.cs" />
     <Compile Include="Models\Entity\About.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
